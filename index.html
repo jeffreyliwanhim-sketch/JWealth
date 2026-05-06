@@ -1,2 +1,478 @@
-<h1>JFinance</h1>
-<p>Coming soon...</p>
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>华尔街小狼｜班级财富对战</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f1c;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px 16px 40px;
+            color: #eef2ff;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #7aa2f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sub {
+            color: #8a99b9;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            border-left: 3px solid #3b82f6;
+            padding-left: 10px;
+        }
+
+        /* 資產卡片 */
+        .asset-card {
+            background: #111827;
+            border-radius: 24px;
+            padding: 18px;
+            margin-bottom: 16px;
+            border: 1px solid #1f2a3e;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: all 0.1s ease;
+        }
+
+        .asset-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .asset-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .aapl { color: #60a5fa; }
+        .msft { color: #4ade80; }
+        .btc { color: #fbbf24; }
+
+        .price {
+            font-size: 1.45rem;
+            font-weight: 800;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+            margin: 8px 0;
+        }
+
+        .change {
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: #1e293b;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 40px;
+        }
+
+        .positive { color: #4ade80; }
+        .negative { color: #f87171; }
+
+        .bet-area {
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .bet-buttons button {
+            background: #1e293b;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: white;
+            margin-right: 8px;
+            cursor: pointer;
+            transition: 0.1s linear;
+            font-size: 0.85rem;
+        }
+
+        .bet-buttons button:active {
+            transform: scale(0.96);
+        }
+
+        .bet-up { border: 1px solid #4ade80; }
+        .bet-down { border: 1px solid #f87171; }
+
+        .my-bet {
+            background: #0f1622;
+            padding: 4px 12px;
+            border-radius: 32px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* 虛擬幣區域 */
+        .balance-card {
+            background: #030617;
+            border-radius: 28px;
+            padding: 18px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #2d3a5e;
+        }
+
+        .balance-label {
+            font-size: 0.8rem;
+            color: #9ca3cf;
+        }
+
+        .balance-value {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .reset-btn {
+            background: #2d3a5e;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            color: white;
+        }
+
+        /* 排行榜簡易 */
+        .rank-card {
+            background: #0b111e;
+            border-radius: 24px;
+            padding: 18px;
+            margin: 20px 0;
+        }
+
+        .rank-title {
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .rank-list {
+            list-style: none;
+        }
+
+        .rank-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #1f2a3e;
+            font-size: 0.9rem;
+        }
+
+        .disclaimer {
+            font-size: 0.7rem;
+            text-align: center;
+            color: #4b556b;
+            margin-top: 32px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📊 华尔街小狼</h1>
+    <div class="sub">美股 + BTC ｜ 虚拟对战 ｜ 每周派彩</div>
+
+    <!-- 虛擬幣餘額 -->
+    <div class="balance-card">
+        <div>
+            <div class="balance-label">💎 虛擬本金</div>
+            <div class="balance-value" id="balanceDisplay">1000</div>
+        </div>
+        <button class="reset-btn" id="resetBtn">🔄 重新開始</button>
+    </div>
+
+    <!-- AAPL 區塊 -->
+    <div class="asset-card" data-symbol="AAPL">
+        <div class="asset-header">
+            <span class="asset-name aapl">🍎 Apple (AAPL)</span>
+            <span class="change" id="changeAAPL">--</span>
+        </div>
+        <div class="price" id="priceAAPL">$ ---</div>
+        <div class="bet-area">
+            <div class="bet-buttons">
+                <button class="bet-up" data-symbol="AAPL" data-direction="up">📈 升</button>
+                <button class="bet-down" data-symbol="AAPL" data-direction="down">📉 跌</button>
+            </div>
+            <div class="my-bet" id="betAAPL">⚡ 未下注</div>
+        </div>
+    </div>
+
+    <!-- MSFT 區塊 -->
+    <div class="asset-card" data-symbol="MSFT">
+        <div class="asset-header">
+            <span class="asset-name msft">🪟 Microsoft (MSFT)</span>
+            <span class="change" id="changeMSFT">--</span>
+        </div>
+        <div class="price" id="priceMSFT">$ ---</div>
+        <div class="bet-area">
+            <div class="bet-buttons">
+                <button class="bet-up" data-symbol="MSFT" data-direction="up">📈 升</button>
+                <button class="bet-down" data-symbol="MSFT" data-direction="down">📉 跌</button>
+            </div>
+            <div class="my-bet" id="betMSFT">⚡ 未下注</div>
+        </div>
+    </div>
+
+    <!-- BTC 區塊 -->
+    <div class="asset-card" data-symbol="BTC">
+        <div class="asset-header">
+            <span class="asset-name btc">₿ Bitcoin (BTC)</span>
+            <span class="change" id="changeBTC">--</span>
+        </div>
+        <div class="price" id="priceBTC">$ ---</div>
+        <div class="bet-area">
+            <div class="bet-buttons">
+                <button class="bet-up" data-symbol="BTC" data-direction="up">📈 升</button>
+                <button class="bet-down" data-symbol="BTC" data-direction="down">📉 跌</button>
+            </div>
+            <div class="my-bet" id="betBTC">⚡ 未下注</div>
+        </div>
+    </div>
+
+    <!-- 簡易排行榜 -->
+    <div class="rank-card">
+        <div class="rank-title">🏆 班際排行</div>
+        <ul class="rank-list" id="rankList">
+            <li>🥇 同學A <span>2,450</span></li>
+            <li>🥈 同學B <span>1,920</span></li>
+            <li>🥉 你 <span id="yourRankBalance">1000</span></li>
+        </ul>
+        <div style="font-size: 0.7rem; margin-top: 8px; color:#5b6e8c;">※每週五結算，猜對一次+$50</div>
+    </div>
+    <div class="disclaimer">
+        ⚡ 即時數據來自第三方報價 (模擬延遲)<br>
+        *純虛擬投資遊戲，不涉及真實金錢。僅供娛樂與學習*
+    </div>
+</div>
+
+<script>
+    // ----------------------------- 真實數據抓取 -----------------------------
+    // 使用 Yahoo Finance (免費, 不需key)
+    async function fetchPrice(symbol) {
+        // 對應 Yahoo Finance 符號
+        let yahooSymbol = symbol;
+        if (symbol === 'BTC') yahooSymbol = 'BTC-USD';
+        
+        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${yahooSymbol}`;
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            let price = null;
+            if (data.chart && data.chart.result && data.chart.result[0]) {
+                const meta = data.chart.result[0].meta;
+                price = meta.regularMarketPrice;
+            }
+            return price;
+        } catch (err) {
+            console.warn(`fetch ${symbol} error`, err);
+            return null;
+        }
+    }
+
+    // 美股兩個 + BTC即時價格更新，同時計算升跌
+    async function updateAllPrices() {
+        const symbols = ['AAPL', 'MSFT', 'BTC'];
+        for (let sym of symbols) {
+            const price = await fetchPrice(sym);
+            if (price !== null) {
+                const oldPrice = currentPrices[sym] || price;
+                currentPrices[sym] = price;
+                // 更新顯示
+                const priceElem = document.getElementById(`price${sym}`);
+                if (priceElem) {
+                    priceElem.innerText = sym === 'BTC' ? `$${price.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0})}` : `$${price.toFixed(2)}`;
+                }
+                // 計算升跌變化
+                if (oldPrice !== price) {
+                    const changePercent = ((price - oldPrice) / oldPrice * 100);
+                    const changeElem = document.getElementById(`change${sym}`);
+                    if (changeElem) {
+                        const sign = changePercent >= 0 ? '+' : '';
+                        changeElem.innerHTML = `${sign}${changePercent.toFixed(2)}%`;
+                        changeElem.className = `change ${changePercent >= 0 ? 'positive' : 'negative'}`;
+                    }
+                    // 觸發結算邏輯（檢查用戶下注方向）
+                    checkWinLose(sym, oldPrice, price);
+                }
+            }
+        }
+    }
+
+    // ----- 遊戲狀態 (下注方向) -----
+    let userBets = {
+        AAPL: null,   // 'up' / 'down'
+        MSFT: null,
+        BTC: null
+    };
+    let balance = 1000;      // 虛擬幣
+    let currentPrices = {
+        AAPL: null,
+        MSFT: null,
+        BTC: null
+    };
+
+    // 每次價格變動時檢查輸贏 (每次即時結算，更像短線對戰)
+    function checkWinLose(symbol, oldPrice, newPrice) {
+        if (!oldPrice || !newPrice) return;
+        const direction = userBets[symbol];
+        if (!direction) return;  // 沒下注就不結算
+        
+        let isWin = false;
+        if (direction === 'up' && newPrice > oldPrice) isWin = true;
+        if (direction === 'down' && newPrice < oldPrice) isWin = true;
+        
+        if (isWin) {
+            // 贏了加虛擬幣，並清除該下注 (需重新下注下一輪)
+            const winAmount = 50;
+            balance += winAmount;
+            updateBalanceUI();
+            showToast(`${symbol} 預測正確！ +${winAmount} 虛擬幣`);
+            // 清除下注 (避免同一方向連續贏)
+            userBets[symbol] = null;
+            updateBetUI(symbol);
+        } else if ((direction === 'up' && newPrice < oldPrice) || (direction === 'down' && newPrice > oldPrice)) {
+            // 輸了只清除下注，不扣本金（扣本金會讓新手沮喪）
+            userBets[symbol] = null;
+            updateBetUI(symbol);
+            showToast(`${symbol} 方向錯誤，重新下注吧`);
+        }
+        // 平手無變化則不清除
+        updateYourRankBalance();
+    }
+
+    function updateBalanceUI() {
+        document.getElementById('balanceDisplay').innerText = balance;
+        updateYourRankBalance();
+    }
+
+    function updateYourRankBalance() {
+        const yourSpan = document.getElementById('yourRankBalance');
+        if (yourSpan) yourSpan.innerText = balance;
+    }
+
+    function updateBetUI(symbol) {
+        const betSpan = document.getElementById(`bet${symbol}`);
+        const direction = userBets[symbol];
+        if (direction === 'up') betSpan.innerText = '📈 已押 漲';
+        else if (direction === 'down') betSpan.innerText = '📉 已押 跌';
+        else betSpan.innerText = '⚡ 未下注';
+    }
+
+    function showToast(msg) {
+        // 簡易提示
+        const toastDiv = document.createElement('div');
+        toastDiv.innerText = msg;
+        toastDiv.style.position = 'fixed';
+        toastDiv.style.bottom = '20px';
+        toastDiv.style.left = '16px';
+        toastDiv.style.right = '16px';
+        toastDiv.style.backgroundColor = '#1e293b';
+        toastDiv.style.color = '#e2e8f0';
+        toastDiv.style.padding = '10px 16px';
+        toastDiv.style.borderRadius = '60px';
+        toastDiv.style.fontSize = '0.8rem';
+        toastDiv.style.textAlign = 'center';
+        toastDiv.style.zIndex = '999';
+        toastDiv.style.border = '1px solid #3b82f6';
+        document.body.appendChild(toastDiv);
+        setTimeout(() => toastDiv.remove(), 1800);
+    }
+
+    // 下注功能
+    function placeBet(symbol, direction) {
+        if (userBets[symbol] !== null) {
+            showToast(`你已對 ${symbol} 下注，請等結算後再玩`);
+            return;
+        }
+        // 可選：最小餘額限制? 不用, 因為沒扣本金
+        userBets[symbol] = direction;
+        updateBetUI(symbol);
+        showToast(`${symbol} 押${direction === 'up' ? '漲 📈' : '跌 📉'}，等價格變動即結算！`);
+    }
+
+    // 重置全部狀態
+    function resetGame() {
+        balance = 1000;
+        userBets = { AAPL: null, MSFT: null, BTC: null };
+        updateBalanceUI();
+        updateBetUI('AAPL');
+        updateBetUI('MSFT');
+        updateBetUI('BTC');
+        showToast('遊戲已重置，虛擬幣回到 1000');
+        // 可選重新刷新價格顯示
+        updateAllPrices();
+    }
+
+    // 定時每12秒更新一次價格（模擬即時）
+    let intervalId;
+    function startAutoRefresh() {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = setInterval(() => {
+            updateAllPrices();
+        }, 12000);
+    }
+
+    // 綁定按鈕事件
+    function bindEvents() {
+        document.querySelectorAll('.bet-up').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const symbol = btn.getAttribute('data-symbol');
+                placeBet(symbol, 'up');
+            });
+        });
+        document.querySelectorAll('.bet-down').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const symbol = btn.getAttribute('data-symbol');
+                placeBet(symbol, 'down');
+            });
+        });
+        const resetBtn = document.getElementById('resetBtn');
+        if (resetBtn) resetBtn.addEventListener('click', resetGame);
+    }
+
+    // 初始化 (抓一次價格＋啟動計時器)
+    async function init() {
+        bindEvents();
+        await updateAllPrices();   // 立即抓一次
+        startAutoRefresh();
+        updateYourRankBalance();
+    }
+
+    init();
+</script>
+</body>
+</html>
