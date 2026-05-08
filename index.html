@@ -3,70 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>JWealth | 全屏交易大厅 · 真实股价</title>
+    <title>JWealth | 专业交易模拟器 · 真实股价</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0e17; color: #eef2ff; }
         h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
-        /* 专业封面 */
-        .hero {
-            min-height: 100vh;
+        /* ========== 顶部导航栏 ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 26, 47, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1rem 2rem;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(59,130,246,0.3);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .nav-links a:hover { color: #60a5fa; }
+        .nav-login-btn {
+            background: #3b82f6;
+            border: none;
+            padding: 0.4rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-login-btn:hover { background: #2563eb; transform: translateY(-1px); }
+
+        /* ========== 专业封面（深蓝色渐变） ========== */
+        .hero {
+            min-height: auto;
+            padding: 6rem 0 4rem;
             text-align: center;
-            background: radial-gradient(ellipse at 30% 40%, #0f172a, #020617);
+            background: linear-gradient(135deg, #0a1a2f 0%, #0d2b4e 50%, #0a1a2f 100%);
             position: relative;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' opacity='0.3'%3E%3Cpath fill='none' stroke='%233b82f6' stroke-width='0.5' d='M0 0 L200 0 M0 20 L200 20 M0 40 L200 40 M0 60 L200 60 M0 80 L200 80 M0 100 L200 100 M0 120 L200 120 M0 140 L200 140 M0 160 L200 160 M0 180 L200 180 M0 0 L0 200 M20 0 L20 200 M40 0 L40 200 M60 0 L60 200 M80 0 L80 200 M100 0 L100 200 M120 0 L120 200 M140 0 L140 200 M160 0 L160 200 M180 0 L180 200'/%3E%3C/svg%3E");
-            pointer-events: none;
+        .hero::before { display: none; }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
         }
-        .hero-content { max-width: 800px; position: relative; z-index: 2; padding: 2rem; }
-        .badge { background: rgba(59,130,246,0.2); backdrop-filter: blur(8px); color: #60a5fa; font-size: 0.8rem; padding: 0.3rem 1rem; border-radius: 40px; display: inline-block; margin-bottom: 1.5rem; border: 1px solid rgba(59,130,246,0.4); }
-        .hero h1 { font-size: clamp(2.8rem, 8vw, 4.5rem); background: linear-gradient(135deg, #fff, #94a3f8); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1.2rem; }
-        .hero p { font-size: 1.2rem; color: #9ca3cf; margin-bottom: 2rem; }
-        .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-        .stat-value { font-size: 2rem; font-weight: 800; color: #4ade80; }
-        .stat-label { font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
-        .cta-button { background: linear-gradient(135deg, #3b82f6, #2563eb); border: none; padding: 0.9rem 2.5rem; border-radius: 48px; font-weight: 600; font-size: 1.1rem; color: white; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4); }
+        .badge {
+            background: rgba(59,130,246,0.2);
+            backdrop-filter: blur(8px);
+            color: #60a5fa;
+            font-size: 0.8rem;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(59,130,246,0.4);
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            background: linear-gradient(135deg, #fff, #94a3f8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #9ca3cf;
+            margin-bottom: 2rem;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .stat-value { font-size: 1.8rem; font-weight: 800; color: #4ade80; }
+        .stat-label { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+        .cta-button {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 48px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4);
+        }
         .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(59,130,246,0.6); }
 
         /* 特色区块 */
-        .section { padding: 5rem 0; background: #0f172a; }
+        .section { padding: 4rem 2rem; background: #0f172a; }
         .section-title { text-align: center; font-size: 2rem; margin-bottom: 3rem; color: #f1f5f9; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .card { background: #1e293b; border-radius: 1.5rem; padding: 1.8rem; border: 1px solid #334155; transition: all 0.2s; }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+            transition: all 0.2s;
+        }
         .card:hover { border-color: #3b82f6; transform: translateY(-4px); }
-        .card-icon { font-size: 2rem; margin-bottom: 1rem; }
-        .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-        .card p { color: #94a3b8; line-height: 1.5; }
+        .card-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .card p { color: #94a3b8; line-height: 1.4; font-size: 0.9rem; }
 
-        footer { background: #030712; padding: 2rem; text-align: center; color: #64748b; font-size: 0.8rem; border-top: 1px solid #1e293b; }
+        footer { background: #030712; padding: 1.5rem; text-align: center; color: #64748b; font-size: 0.75rem; border-top: 1px solid #1e293b; }
 
         /* ========== 登录卡片（居中） ========== */
         .game-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 30% 40%, #0f172a, #020617); }
-        .game-container { max-width: 500px; width: 90%; margin: 2rem auto; }
+        .game-container { max-width: 480px; width: 90%; margin: 2rem auto; }
         .form-card { background: #1e293b; border-radius: 2rem; padding: 2rem; border: 1px solid #334155; box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5); }
-        .input-group { margin-bottom: 1.2rem; }
-        input, select { width: 100%; padding: 0.9rem; background: #0f172a; border: 1px solid #334155; border-radius: 2rem; color: white; font-size: 0.95rem; }
+        .input-group { margin-bottom: 1rem; }
+        input, select { width: 100%; padding: 0.8rem; background: #0f172a; border: 1px solid #334155; border-radius: 2rem; color: white; font-size: 0.9rem; }
         input:focus, select:focus { outline: none; border-color: #3b82f6; }
-        .btn { background: #3b82f6; border: none; padding: 0.9rem; border-radius: 2rem; font-weight: 600; color: white; cursor: pointer; width: 100%; }
-        .btn-secondary { background: #334155; width: auto; padding: 0.5rem 1rem; }
-        .switch { text-align: center; margin-top: 1.2rem; font-size: 0.85rem; color: #94a3b8; cursor: pointer; }
+        .btn { background: #3b82f6; border: none; padding: 0.8rem; border-radius: 2rem; font-weight: 600; color: white; cursor: pointer; width: 100%; }
+        .btn-secondary { background: #334155; width: auto; padding: 0.4rem 1rem; }
+        .switch { text-align: center; margin-top: 1rem; font-size: 0.8rem; color: #94a3b8; cursor: pointer; }
         .hidden { display: none; }
 
-        /* ========== 全屏仪表盘 ========== */
+        /* ========== 全屏仪表盘（深蓝色渐变背景） ========== */
         .dashboard-container {
             max-width: 100%;
             margin: 0;
-            padding: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #0a1a2f 0%, #0d2b4e 100%);
+            min-height: 100vh;
         }
-        /* 顶部状态栏 - 紧凑 */
         .stats-row {
             display: flex;
             gap: 1rem;
@@ -74,19 +172,20 @@
             flex-wrap: wrap;
         }
         .stat-card {
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
             border-radius: 1rem;
             padding: 0.8rem 1.5rem;
             flex: 1;
-            min-width: 150px;
-            border: 1px solid #1e293b;
+            min-width: 140px;
+            border: 1px solid rgba(59,130,246,0.3);
         }
         .stat-card .label { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; }
-        .stat-card .value { font-size: 1.5rem; font-weight: 700; color: #facc15; }
+        .stat-card .value { font-size: 1.4rem; font-weight: 700; color: #facc15; }
         
-        /* 添加股票栏 */
         .add-stock-bar {
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
             border-radius: 1rem;
             padding: 0.8rem 1rem;
             margin-bottom: 1.5rem;
@@ -94,11 +193,11 @@
             gap: 0.5rem;
             align-items: center;
             flex-wrap: wrap;
+            border: 1px solid rgba(59,130,246,0.2);
         }
-        .add-stock-bar input { flex: 2; min-width: 150px; margin: 0; }
-        .add-stock-bar button { width: auto; padding: 0.8rem 1.2rem; margin: 0; }
+        .add-stock-bar input { flex: 2; min-width: 150px; margin: 0; background: #0f172a; }
+        .add-stock-bar button { width: auto; padding: 0.6rem 1.2rem; margin: 0; }
         
-        /* 资产网格 — 全屏自适应（3-4列） */
         .assets-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -106,13 +205,16 @@
             margin-bottom: 1.5rem;
         }
         .asset-card {
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
             border-radius: 1rem;
             padding: 0.8rem 1rem;
-            border: 1px solid #1e293b;
+            border: 1px solid rgba(59,130,246,0.2);
+            transition: all 0.2s;
         }
+        .asset-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
         .asset-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
-        .price { font-size: 1.3rem; font-weight: 700; color: #facc15; }
+        .price { font-size: 1.2rem; font-weight: 700; color: #facc15; }
         .change { font-size: 0.7rem; padding: 0.1rem 0.4rem; border-radius: 1rem; background: #1e293b; }
         .positive { color: #4ade80; }
         .negative { color: #f87171; }
@@ -123,12 +225,13 @@
         .buy { background: #22c55e; }
         .sell { background: #ef4444; }
         
-        /* 排行榜区域 */
         .rank-section {
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
             border-radius: 1rem;
             padding: 1rem;
             margin-top: 0.5rem;
+            border: 1px solid rgba(59,130,246,0.2);
         }
         .rank-section h3 { font-size: 1rem; margin-bottom: 0.8rem; }
         #rankList { list-style: none; max-height: 200px; overflow-y: auto; }
@@ -139,11 +242,23 @@
         @media (max-width: 768px) {
             .assets-grid { grid-template-columns: 1fr; }
             .stats-row { flex-direction: column; }
-            .dashboard-container { padding: 0.5rem; }
+            .navbar { padding: 0.8rem 1rem; }
+            .nav-links { gap: 1rem; }
+            .dashboard-container { padding: 1rem; }
         }
     </style>
 </head>
 <body>
+
+<!-- 固定导航栏 -->
+<div class="navbar">
+    <div class="logo">JWealth</div>
+    <div class="nav-links">
+        <a id="navFeatures">Features</a>
+        <a id="navAbout">About</a>
+        <button class="nav-login-btn" id="navLoginBtn">Login</button>
+    </div>
+</div>
 
 <!-- LANDING PAGE -->
 <div id="landing">
@@ -161,13 +276,27 @@
         </div>
     </div>
 
-    <div class="section">
+    <!-- Features 区块 -->
+    <div id="featuresSection" class="section">
         <div class="grid-3">
             <div class="card"><div class="card-icon">⚡</div><h3>Real‑Time Prices</h3><p>Live data from Yahoo Finance — no delays.</p></div>
             <div class="card"><div class="card-icon">🎭</div><h3>6 Unique Classes</h3><p>Each with distinct perks and drawbacks.</p></div>
             <div class="card"><div class="card-icon">🏆</div><h3>Global Leaderboard</h3><p>Compete against users worldwide.</p></div>
+            <div class="card"><div class="card-icon">🎲</div><h3>Dynamic Events</h3><p>Black Swan, Lucky Fortune, Tax Spike.</p></div>
+            <div class="card"><div class="card-icon">🏅</div><h3>Achievements</h3><p>Unlock badges and exclusive skins.</p></div>
+            <div class="card"><div class="card-icon">🔄</div><h3>Season Reset</h3><p>Keep badges, restart wealth every 3 months.</p></div>
         </div>
     </div>
+
+    <!-- About 区块 -->
+    <div id="aboutSection" class="section" style="background: #0a1a2f;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 class="section-title">About JWealth</h2>
+            <p style="color: #cbd5e1; line-height: 1.6;">JWealth is a next‑generation stock market simulator built for traders who want to learn without risk. We combine real‑time market data, RPG game mechanics, and social competition to create the most engaging trading experience. Whether you're a beginner or an experienced investor, JWealth gives you $10,000 virtual cash to master the markets.</p>
+            <p style="margin-top: 1rem; color: #60a5fa;">© 2026 · Built for the global trading community</p>
+        </div>
+    </div>
+
     <footer>© 2026 JWealth — Real‑time simulation. No real money involved. Data via Yahoo Finance.</footer>
 </div>
 
@@ -203,10 +332,10 @@
         </div>
     </div>
 
-    <!-- 全屏交易仪表盘 -->
+    <!-- 全屏交易仪表盘（深蓝色渐变） -->
     <div id="dashboard" class="dashboard-container hidden">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <div id="userInfo" style="background:#0f172a; padding:0.4rem 1rem; border-radius: 2rem;">👤</div>
+            <div id="userInfo" style="background:rgba(15,23,42,0.7); padding:0.4rem 1rem; border-radius: 2rem;">👤</div>
             <button id="logoutBtn" class="btn btn-secondary">Exit</button>
         </div>
 
@@ -221,7 +350,6 @@
             <button id="addStockBtn" class="btn" style="width: auto; padding: 0.6rem 1.2rem;">+ Add</button>
         </div>
 
-        <!-- 全屏资产网格 -->
         <div id="dynamicAssetsContainer" class="assets-grid"></div>
 
         <div class="rank-section">
@@ -233,21 +361,17 @@
 
 <script>
     // ========== 真实价格获取（通过 Vercel 代理） ==========
-    // 本地测试时可临时改为 true 使用模拟价格，部署到 Vercel 后会自动取真实数据
-    let USE_MOCK = false;   // 改为 true 则使用模拟价格（不依赖后端）
+    let USE_MOCK = false;   // 部署到 Vercel 后自动取真实数据，本地测试可改为 true
     
     async function fetchRealPrice(symbol) {
-        if (USE_MOCK) {
-            // 模拟轻微波动，保持界面体验
-            return 100 + Math.random() * 400;
-        }
+        if (USE_MOCK) return 100 + Math.random() * 400;
         try {
             const res = await fetch(`/api/proxy?symbol=${symbol}`);
             const data = await res.json();
             if (data && typeof data.price === 'number') return data.price;
             throw new Error('Invalid response');
         } catch(e) {
-            console.warn(`真实价格获取失败，使用模拟值: ${symbol}`, e);
+            console.warn(`使用模拟价格: ${symbol}`, e);
             return 100 + Math.random() * 400;
         }
     }
@@ -303,7 +427,6 @@
         container.innerHTML = html;
         document.querySelectorAll('.buy').forEach(btn => btn.onclick = () => trade(btn.dataset.symbol, 'buy'));
         document.querySelectorAll('.sell').forEach(btn => btn.onclick = () => trade(btn.dataset.symbol, 'sell'));
-        // 涨跌显示（实时价格变动时展示）
         for(let sym of stocks) {
             const old = prices[sym];
             setTimeout(() => {
@@ -404,13 +527,22 @@
         }, 10000);
     }
 
-    // ========== UI 切换与事件绑定 ==========
+    // ========== UI 切换与平滑滚动 ==========
     document.getElementById('enterPlatformBtn').onclick = () => {
         document.getElementById('landing').classList.add('hidden');
         document.getElementById('gameRoot').classList.remove('hidden');
         startPriceWatcher();
         updateAllPrices();
     };
+    document.getElementById('navLoginBtn').onclick = () => {
+        document.getElementById('landing').classList.add('hidden');
+        document.getElementById('gameRoot').classList.remove('hidden');
+        startPriceWatcher();
+        updateAllPrices();
+    };
+    document.getElementById('navFeatures').onclick = () => document.getElementById('featuresSection').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('navAbout').onclick = () => document.getElementById('aboutSection').scrollIntoView({ behavior: 'smooth' });
+
     document.getElementById('doRegister').onclick = () => {
         let username = document.getElementById('regUser').value.trim();
         let pass = document.getElementById('regPass').value;
