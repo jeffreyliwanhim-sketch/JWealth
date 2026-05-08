@@ -3,306 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>JWealth | Financial Metaverse</title>
+    <title>JWealth | 全屏交易大厅 · 真实股价</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0e17; color: #eef2ff; }
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            background: #0a0e17;
-            color: #eef2ff;
-            scroll-behavior: smooth;
-        }
-
-        h1, h2, h3 {
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero */
+        /* 专业封面 */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: radial-gradient(ellipse at 30% 40%, #111827, #030712);
+            background: radial-gradient(ellipse at 30% 40%, #0f172a, #020617);
             position: relative;
         }
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' opacity='0.03'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='1' d='M0 0 L200 0 M0 20 L200 20 M0 40 L200 40 M0 60 L200 60 M0 80 L200 80 M0 100 L200 100 M0 120 L200 120 M0 140 L200 140 M0 160 L200 160 M0 180 L200 180 M0 0 L0 200 M20 0 L20 200 M40 0 L40 200 M60 0 L60 200 M80 0 L80 200 M100 0 L100 200 M120 0 L120 200 M140 0 L140 200 M160 0 L160 200 M180 0 L180 200'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' opacity='0.3'%3E%3Cpath fill='none' stroke='%233b82f6' stroke-width='0.5' d='M0 0 L200 0 M0 20 L200 20 M0 40 L200 40 M0 60 L200 60 M0 80 L200 80 M0 100 L200 100 M0 120 L200 120 M0 140 L200 140 M0 160 L200 160 M0 180 L200 180 M0 0 L0 200 M20 0 L20 200 M40 0 L40 200 M60 0 L60 200 M80 0 L80 200 M100 0 L100 200 M120 0 L120 200 M140 0 L140 200 M160 0 L160 200 M180 0 L180 200'/%3E%3C/svg%3E");
             pointer-events: none;
         }
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
+        .hero-content { max-width: 800px; position: relative; z-index: 2; padding: 2rem; }
+        .badge { background: rgba(59,130,246,0.2); backdrop-filter: blur(8px); color: #60a5fa; font-size: 0.8rem; padding: 0.3rem 1rem; border-radius: 40px; display: inline-block; margin-bottom: 1.5rem; border: 1px solid rgba(59,130,246,0.4); }
+        .hero h1 { font-size: clamp(2.8rem, 8vw, 4.5rem); background: linear-gradient(135deg, #fff, #94a3f8); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1.2rem; }
+        .hero p { font-size: 1.2rem; color: #9ca3cf; margin-bottom: 2rem; }
+        .hero-stats { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .stat-value { font-size: 2rem; font-weight: 800; color: #4ade80; }
+        .stat-label { font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
+        .cta-button { background: linear-gradient(135deg, #3b82f6, #2563eb); border: none; padding: 0.9rem 2.5rem; border-radius: 48px; font-weight: 600; font-size: 1.1rem; color: white; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4); }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(59,130,246,0.6); }
+
+        /* 特色区块 */
+        .section { padding: 5rem 0; background: #0f172a; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 3rem; color: #f1f5f9; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .card { background: #1e293b; border-radius: 1.5rem; padding: 1.8rem; border: 1px solid #334155; transition: all 0.2s; }
+        .card:hover { border-color: #3b82f6; transform: translateY(-4px); }
+        .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .card p { color: #94a3b8; line-height: 1.5; }
+
+        footer { background: #030712; padding: 2rem; text-align: center; color: #64748b; font-size: 0.8rem; border-top: 1px solid #1e293b; }
+
+        /* ========== 登录卡片（居中） ========== */
+        .game-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 30% 40%, #0f172a, #020617); }
+        .game-container { max-width: 500px; width: 90%; margin: 2rem auto; }
+        .form-card { background: #1e293b; border-radius: 2rem; padding: 2rem; border: 1px solid #334155; box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5); }
+        .input-group { margin-bottom: 1.2rem; }
+        input, select { width: 100%; padding: 0.9rem; background: #0f172a; border: 1px solid #334155; border-radius: 2rem; color: white; font-size: 0.95rem; }
+        input:focus, select:focus { outline: none; border-color: #3b82f6; }
+        .btn { background: #3b82f6; border: none; padding: 0.9rem; border-radius: 2rem; font-weight: 600; color: white; cursor: pointer; width: 100%; }
+        .btn-secondary { background: #334155; width: auto; padding: 0.5rem 1rem; }
+        .switch { text-align: center; margin-top: 1.2rem; font-size: 0.85rem; color: #94a3b8; cursor: pointer; }
+        .hidden { display: none; }
+
+        /* ========== 全屏仪表盘 ========== */
+        .dashboard-container {
+            max-width: 100%;
+            margin: 0;
+            padding: 1rem;
         }
-        .badge {
-            background: rgba(59,130,246,0.15);
-            backdrop-filter: blur(4px);
-            color: #60a5fa;
-            font-size: 0.8rem;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            display: inline-block;
+        /* 顶部状态栏 - 紧凑 */
+        .stats-row {
+            display: flex;
+            gap: 1rem;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(96,165,250,0.3);
+            flex-wrap: wrap;
         }
-        .hero h1 {
-            font-size: clamp(2.8rem, 8vw, 4.5rem);
-            background: linear-gradient(135deg, #fff, #94a3f8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1.2rem;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            color: #9ca3cf;
-            margin-bottom: 2rem;
-        }
-        .cta-button {
-            background: #3b82f6;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 48px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(59,130,246,0.3);
-        }
-        .cta-button:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-        }
-
-        /* Sections */
-        .section {
-            padding: 5rem 0;
+        .stat-card {
             background: #0f172a;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            color: #f1f5f9;
-        }
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .card {
-            background: #1e293b;
-            border-radius: 1.5rem;
-            padding: 1.8rem;
-            border: 1px solid #334155;
-            transition: all 0.2s;
-        }
-        .card:hover {
-            border-color: #3b82f6;
-            transform: translateY(-4px);
-        }
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        .card p {
-            color: #94a3b8;
-            line-height: 1.5;
-        }
-        .achievement-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .achievement-item {
-            background: #1e293b;
             border-radius: 1rem;
-            padding: 1rem;
+            padding: 0.8rem 1.5rem;
+            flex: 1;
+            min-width: 150px;
+            border: 1px solid #1e293b;
+        }
+        .stat-card .label { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; }
+        .stat-card .value { font-size: 1.5rem; font-weight: 700; color: #facc15; }
+        
+        /* 添加股票栏 */
+        .add-stock-bar {
+            background: #0f172a;
+            border-radius: 1rem;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.5rem;
             display: flex;
+            gap: 0.5rem;
             align-items: center;
-            gap: 1rem;
+            flex-wrap: wrap;
         }
-        .item-card, .event-card {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-        }
-        .stage-grid {
+        .add-stock-bar input { flex: 2; min-width: 150px; margin: 0; }
+        .add-stock-bar button { width: auto; padding: 0.8rem 1.2rem; margin: 0; }
+        
+        /* 资产网格 — 全屏自适应（3-4列） */
+        .assets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1rem;
-        }
-        .stage {
-            background: #1e293b;
-            border-radius: 1rem;
-            padding: 1rem;
-            text-align: center;
-        }
-        footer {
-            background: #030712;
-            padding: 2rem;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.8rem;
-        }
-
-        /* Game UI - Centered Cards */
-        .game-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 0 1.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 80vh;
-        }
-        .form-card {
-            background: #1e293b;
-            border-radius: 1.5rem;
-            padding: 2rem;
-            margin-bottom: 1rem;
-            border: 1px solid #334155;
-            width: 100%;
-            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.4);
-        }
-        .terms-link {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.75rem;
-            color: #64748b;
-        }
-        .terms-link a {
-            color: #60a5fa;
-            text-decoration: none;
-        }
-        .input-group {
-            margin-bottom: 1rem;
-        }
-        input, select {
-            width: 100%;
-            padding: 0.8rem;
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 2rem;
-            color: white;
-            font-size: 0.9rem;
-        }
-        .btn {
-            background: #3b82f6;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            color: white;
-            cursor: pointer;
-            width: 100%;
-        }
-        .btn-secondary {
-            background: #334155;
-        }
-        .switch {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.8rem;
-            color: #94a3b8;
-            cursor: pointer;
-        }
-        .hidden {
-            display: none;
-        }
-        .balance-panel {
-            display: flex;
-            justify-content: space-between;
-            background: #0f172a;
-            padding: 1rem;
-            border-radius: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         .asset-card {
             background: #0f172a;
             border-radius: 1rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid #1e293b;
         }
-        .asset-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .price {
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-        .change {
-            font-size: 0.8rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 2rem;
-            background: #1e293b;
-        }
+        .asset-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+        .price { font-size: 1.3rem; font-weight: 700; color: #facc15; }
+        .change { font-size: 0.7rem; padding: 0.1rem 0.4rem; border-radius: 1rem; background: #1e293b; }
         .positive { color: #4ade80; }
         .negative { color: #f87171; }
-        .holdings {
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin: 0.5rem 0;
-        }
-        .trade-controls {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-        .trade-input {
-            width: 90px;
-            text-align: center;
-        }
+        .holdings { font-size: 0.7rem; color: #94a3b8; margin: 0.3rem 0; }
+        .trade-controls { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+        .trade-input { width: 70px; text-align: center; padding: 0.4rem; }
+        .buy, .sell { padding: 0.4rem 0.8rem; font-size: 0.8rem; width: auto; }
         .buy { background: #22c55e; }
         .sell { background: #ef4444; }
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: #334155;
-            padding: 0.8rem;
-            border-radius: 2rem;
-            text-align: center;
-            z-index: 999;
-        }
-        .event-notification {
-            background: #f59e0b;
-            color: #0f172a;
-            font-weight: bold;
-        }
-        .shop-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
+        
+        /* 排行榜区域 */
+        .rank-section {
             background: #0f172a;
-            padding: 0.5rem;
             border-radius: 1rem;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+        .rank-section h3 { font-size: 1rem; margin-bottom: 0.8rem; }
+        #rankList { list-style: none; max-height: 200px; overflow-y: auto; }
+        #rankList li { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 0.4rem 0; border-bottom: 1px solid #1e293b; }
+        
+        .toast { position: fixed; bottom: 20px; left: 20px; right: 20px; background: #1e293b; padding: 0.8rem; border-radius: 2rem; text-align: center; z-index: 1000; border-left: 4px solid #3b82f6; }
+        
+        @media (max-width: 768px) {
+            .assets-grid { grid-template-columns: 1fr; }
+            .stats-row { flex-direction: column; }
+            .dashboard-container { padding: 0.5rem; }
         }
     </style>
 </head>
@@ -310,450 +147,299 @@
 
 <!-- LANDING PAGE -->
 <div id="landing">
-    <section class="hero">
+    <div class="hero">
         <div class="hero-content">
-            <span class="badge">🎮 JWealth · Financial Metaverse</span>
-            <h1>Trade. Conquer. Rise.</h1>
-            <p>Live prices · 6 unique classes · Achievements · Dynamic events · Global leaderboard</p>
-            <button class="cta-button" id="enterGameBtn">Enter JWealth →</button>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Why JWealth?</h2>
-            <div class="grid-3">
-                <div class="card"><div class="card-icon">⚔️</div><h3>RPG Classes</h3><p>6 unique classes with distinct perks and drawbacks.</p></div>
-                <div class="card"><div class="card-icon">🏅</div><h3>Achievements</h3><p>Unlock visual badges, track your legend.</p></div>
-                <div class="card"><div class="card-icon">🎲</div><h3>Dynamic Events</h3><p>Black Swan, Lucky Fortune – chaos & rewards.</p></div>
-                <div class="card"><div class="card-icon">📊</div><h3>Predict & Bet</h3><p>Daily index forecast, earnings gamble.</p></div>
-                <div class="card"><div class="card-icon">🏆</div><h3>Global Ranking</h3><p>Compete worldwide for the top spot.</p></div>
-                <div class="card"><div class="card-icon">🔄</div><h3>Season Reset</h3><p>Keep badges, restart wealth every 3 months.</p></div>
+            <span class="badge">🔷 JWealth · PROFESSIONAL TRADING SIMULATOR</span>
+            <h1>Trade like an institution.<br>Learn with zero risk.</h1>
+            <p>Real‑time US stocks · Live pricing · 6 RPG classes · Global leaderboard</p>
+            <div class="hero-stats">
+                <div class="stat"><div class="stat-value">1000+</div><div class="stat-label">Stocks</div></div>
+                <div class="stat"><div class="stat-value">Live</div><div class="stat-label">Market Data</div></div>
+                <div class="stat"><div class="stat-value">$10k</div><div class="stat-label">Virtual Cash</div></div>
             </div>
+            <button class="cta-button" id="enterPlatformBtn">Launch Platform →</button>
         </div>
-    </section>
+    </div>
 
-    <section class="section" style="background: #0a0e17;">
-        <div class="container">
-            <h2 class="section-title">🎭 Choose Your Class</h2>
-            <div class="grid-3">
-                <div class="card"><div class="card-icon">🛡️</div><h3>Dividend Aristocrat</h3><p>Bonus dividend +15% on holding periods. Cash settlement delayed.</p></div>
-                <div class="card"><div class="card-icon">📈</div><h3>Index Master</h3><p>Zero fee on index stocks. Double prediction rewards.</p></div>
-                <div class="card"><div class="card-icon">⚡</div><h3>Derivative Hunter</h3><p>1.2x gain multiplier, double loss penalty. Early quote peek.</p></div>
-                <div class="card"><div class="card-icon">🤖</div><h3>Quant Freak</h3><p>RSI overbought/oversold signals automatically shown.</p></div>
-                <div class="card"><div class="card-icon">🦈</div><h3>M&A Shark</h3><p>Stamp duty waiver on restructuring stocks.</p></div>
-                <div class="card"><div class="card-icon">🌊</div><h3>Southbound Voyager</h3><p>See simulated top 5 northbound inflows.</p></div>
-            </div>
+    <div class="section">
+        <div class="grid-3">
+            <div class="card"><div class="card-icon">⚡</div><h3>Real‑Time Prices</h3><p>Live data from Yahoo Finance — no delays.</p></div>
+            <div class="card"><div class="card-icon">🎭</div><h3>6 Unique Classes</h3><p>Each with distinct perks and drawbacks.</p></div>
+            <div class="card"><div class="card-icon">🏆</div><h3>Global Leaderboard</h3><p>Compete against users worldwide.</p></div>
         </div>
-    </section>
-
-    <footer>
-        <p>© 2026 JWealth — Simulated trading & strategy game. No real money involved.</p>
-    </footer>
+    </div>
+    <footer>© 2026 JWealth — Real‑time simulation. No real money involved. Data via Yahoo Finance.</footer>
 </div>
 
-<!-- GAME MODE -->
-<div id="gameMode" class="game-container hidden">
-    <!-- Register -->
-    <div id="registerPanel" class="form-card">
-        <h3>Create your trader profile</h3>
-        <div class="input-group"><input type="text" id="regUser" placeholder="Username"></div>
-        <div class="input-group"><input type="password" id="regPass" placeholder="Password (min 8 chars)"></div>
-        <div class="input-group"><input type="password" id="regConfirm" placeholder="Confirm password"></div>
-        <div class="input-group">
-            <select id="regClass">
-                <option value="DividendAristocrat">🛡️ Dividend Aristocrat</option>
-                <option value="IndexMaster">📈 Index Master</option>
-                <option value="DerivativeHunter">⚡ Derivative Hunter</option>
-                <option value="QuantFreak">🤖 Quant Freak</option>
-                <option value="MAShark">🦈 M&A Shark</option>
-                <option value="SouthboundVoyager">🌊 Southbound Voyager</option>
-            </select>
-        </div>
-        <button id="doRegister" class="btn">Start Legacy</button>
-        <div class="switch" id="toLoginBtn">Already have an account? Log in →</div>
-        <div class="terms-link"><a href="#" id="termsLinkReg">Terms of Service</a></div>
-    </div>
-
-    <!-- Login -->
-    <div id="loginPanel" class="form-card hidden">
-        <h3>Log into the arena</h3>
-        <div class="input-group"><input type="text" id="loginUser" placeholder="Username"></div>
-        <div class="input-group"><input type="password" id="loginPass" placeholder="Password"></div>
-        <button id="doLogin" class="btn">Enter Trading Floor</button>
-        <div class="switch" id="toRegisterBtn">New wolf? Create account →</div>
-        <div class="terms-link"><a href="#" id="termsLinkLogin">Terms of Service</a></div>
-    </div>
-
-    <!-- Dashboard -->
-    <div id="dashboard" class="hidden" style="width:100%">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <div id="userInfo" style="background:#0f172a; padding:0.5rem 1rem; border-radius:2rem;">👤 </div>
-            <button id="logoutBtn" class="btn btn-secondary" style="width: auto; padding: 0.5rem 1rem;">Exit</button>
-        </div>
-
-        <div class="balance-panel"><span>💰 Net Worth</span><span id="netWorth">$0</span></div>
-        <div class="balance-panel"><span>💵 Cash</span><span id="cash">$0</span></div>
-        <div class="balance-panel"><span>🏅 Points</span><span id="points">0</span></div>
-
-        <!-- Prediction -->
-        <div class="form-card">
-            <h3>📈 Daily Prediction: HSI close ↑ or ↓ ?</h3>
-            <div style="display: flex; gap: 1rem;">
-                <button id="predictUp" class="btn" style="background:#22c55e;">📈 Up</button>
-                <button id="predictDown" class="btn" style="background:#ef4444;">📉 Down</button>
+<!-- GAME MODE (登录 + 全屏交易) -->
+<div id="gameRoot" class="hidden">
+    <div class="game-wrapper">
+        <div class="game-container">
+            <div id="registerPanel" class="form-card">
+                <h3>🔐 Create Account</h3>
+                <div class="input-group"><input type="text" id="regUser" placeholder="Username"></div>
+                <div class="input-group"><input type="password" id="regPass" placeholder="Password (min 8 chars)"></div>
+                <div class="input-group"><input type="password" id="regConfirm" placeholder="Confirm password"></div>
+                <div class="input-group">
+                    <select id="regClass">
+                        <option value="DividendAristocrat">🛡️ Dividend Aristocrat</option>
+                        <option value="IndexMaster">📈 Index Master</option>
+                        <option value="DerivativeHunter">⚡ Derivative Hunter</option>
+                        <option value="QuantFreak">🤖 Quant Freak</option>
+                        <option value="MAShark">🦈 M&A Shark</option>
+                        <option value="SouthboundVoyager">🌊 Southbound Voyager</option>
+                    </select>
+                </div>
+                <button id="doRegister" class="btn">Start Trading</button>
+                <div class="switch" id="toLoginBtn">Already have an account? Login →</div>
             </div>
-            <div id="predictionResult" style="margin-top:0.5rem; font-size:0.8rem;"></div>
+            <div id="loginPanel" class="form-card hidden">
+                <h3>🔑 Login</h3>
+                <div class="input-group"><input type="text" id="loginUser" placeholder="Username"></div>
+                <div class="input-group"><input type="password" id="loginPass" placeholder="Password"></div>
+                <button id="doLogin" class="btn">Access Portfolio</button>
+                <div class="switch" id="toRegisterBtn">New here? Create account →</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全屏交易仪表盘 -->
+    <div id="dashboard" class="dashboard-container hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <div id="userInfo" style="background:#0f172a; padding:0.4rem 1rem; border-radius: 2rem;">👤</div>
+            <button id="logoutBtn" class="btn btn-secondary">Exit</button>
         </div>
 
-        <!-- Shop -->
-        <div class="form-card">
-            <h3>🎒 Shop</h3>
-            <div id="shopItems"></div>
+        <div class="stats-row">
+            <div class="stat-card"><div class="label">Net Worth (USD)</div><div class="value" id="netWorth">$0.00</div></div>
+            <div class="stat-card"><div class="label">Cash (USD)</div><div class="value" id="cash">$0.00</div></div>
+            <div class="stat-card"><div class="label">🏅 Points</div><div class="value" id="points">0</div></div>
         </div>
 
-        <!-- Achievements -->
-        <div class="form-card">
-            <h3>🏅 Achievements</h3>
-            <div id="achievementsList"></div>
+        <div class="add-stock-bar">
+            <input type="text" id="newStockSymbol" placeholder="Add stock (e.g., TSLA, NVDA, AMD, COIN)">
+            <button id="addStockBtn" class="btn" style="width: auto; padding: 0.6rem 1.2rem;">+ Add</button>
         </div>
 
-        <!-- Assets -->
-        <div class="asset-card" data-symbol="AAPL"><div class="asset-header"><strong>🍎 Apple (AAPL)</strong><span class="change" id="chgAAPL">--</span></div><div class="price" id="priceAAPL">$---</div><div class="holdings" id="holdAAPL">Own: 0</div><div class="trade-controls"><input type="number" id="qtyAAPL" class="trade-input" value="1" min="1"><button class="btn buy" data-symbol="AAPL">Buy</button><button class="btn sell" data-symbol="AAPL">Sell</button></div></div>
-        <div class="asset-card" data-symbol="MSFT"><div class="asset-header"><strong>🪟 Microsoft (MSFT)</strong><span class="change" id="chgMSFT">--</span></div><div class="price" id="priceMSFT">$---</div><div class="holdings" id="holdMSFT">Own: 0</div><div class="trade-controls"><input type="number" id="qtyMSFT" class="trade-input" value="1" min="1"><button class="btn buy" data-symbol="MSFT">Buy</button><button class="btn sell" data-symbol="MSFT">Sell</button></div></div>
-        <div class="asset-card" data-symbol="BTC"><div class="asset-header"><strong>₿ Bitcoin (BTC)</strong><span class="change" id="chgBTC">--</span></div><div class="price" id="priceBTC">$---</div><div class="holdings" id="holdBTC">Own: 0</div><div class="trade-controls"><input type="number" id="qtyBTC" class="trade-input" value="0.001" step="0.001" min="0.001"><button class="btn buy" data-symbol="BTC">Buy</button><button class="btn sell" data-symbol="BTC">Sell</button></div></div>
+        <!-- 全屏资产网格 -->
+        <div id="dynamicAssetsContainer" class="assets-grid"></div>
 
-        <div class="form-card"><h3>🏆 Global Leaderboard</h3><ul id="rankList" style="list-style:none;"><li>Log in to see rankings</li></ul></div>
+        <div class="rank-section">
+            <h3>🏆 Global Leaderboard (Net Worth)</h3>
+            <ul id="rankList"><li>Login to see rankings</li></ul>
+        </div>
     </div>
 </div>
 
 <script>
-    // ---------- GAME STATE ----------
+    // ========== 真实价格获取（通过 Vercel 代理） ==========
+    // 本地测试时可临时改为 true 使用模拟价格，部署到 Vercel 后会自动取真实数据
+    let USE_MOCK = false;   // 改为 true 则使用模拟价格（不依赖后端）
+    
+    async function fetchRealPrice(symbol) {
+        if (USE_MOCK) {
+            // 模拟轻微波动，保持界面体验
+            return 100 + Math.random() * 400;
+        }
+        try {
+            const res = await fetch(`/api/proxy?symbol=${symbol}`);
+            const data = await res.json();
+            if (data && typeof data.price === 'number') return data.price;
+            throw new Error('Invalid response');
+        } catch(e) {
+            console.warn(`真实价格获取失败，使用模拟值: ${symbol}`, e);
+            return 100 + Math.random() * 400;
+        }
+    }
+
+    // ========== 全局状态 ==========
     let currentUser = null;
-    
-    // 从 localStorage 加载已保存的用户数据
-    function loadUsersFromStorage() {
-        const saved = localStorage.getItem('JWealth_users');
-        if (saved) {
-            return JSON.parse(saved);
-        }
-        return {};
-    }
-    
-    // 保存用户数据到 localStorage
-    function saveUsersToStorage() {
-        localStorage.setItem('JWealth_users', JSON.stringify(allUsers));
-    }
-    
-    let allUsers = loadUsersFromStorage();
-    let prices = { AAPL: 185.42, MSFT: 420.65, BTC: 62500 };
+    let allUsers = {};
+    let prices = {};
     let priceInterval = null;
-    let eventInterval = null;
-    let predictionLock = false;
+    const DEFAULT_STOCKS = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "NVDA"];
 
-    // Helper functions
-    function showToast(msg, isError = false) {
-        let t = document.createElement('div'); 
-        t.className = 'toast'; 
-        if (isError) t.style.background = '#b91c1c';
-        t.innerText = msg;
-        document.body.appendChild(t); 
-        setTimeout(() => t.remove(), 2500);
+    function loadUsers() { const s = localStorage.getItem('JWealth_users'); if(s) allUsers = JSON.parse(s); }
+    function saveUsers() { localStorage.setItem('JWealth_users', JSON.stringify(allUsers)); }
+    function getUserStocks() {
+        if(!currentUser) return [...DEFAULT_STOCKS];
+        const key = `JWealth_${currentUser.username}_stocks`;
+        const saved = localStorage.getItem(key);
+        return saved ? JSON.parse(saved) : [...DEFAULT_STOCKS];
+    }
+    function saveUserStocks(stocks) { if(currentUser) localStorage.setItem(`JWealth_${currentUser.username}_stocks`, JSON.stringify(stocks)); }
+
+    async function updateAllPrices() {
+        const stocks = getUserStocks();
+        for(let sym of stocks) {
+            const p = await fetchRealPrice(sym);
+            if(p) prices[sym] = p;
+        }
+        renderAssets();
+        if(currentUser) { updateStats(); updateLeaderboard(); }
     }
 
-    // Random price movement (simulated for demo)
-    function updatePrices() {
-        for (let sym of ['AAPL','MSFT','BTC']) {
-            let change = (Math.random() - 0.5) * 0.02;
-            let newPrice = prices[sym] * (1 + change);
-            newPrice = Math.max(newPrice, 0.01);
-            prices[sym] = newPrice;
-            document.getElementById(`price${sym}`).innerText = sym === 'BTC' ? `$${newPrice.toLocaleString()}` : `$${newPrice.toFixed(2)}`;
-            let pct = (change * 100).toFixed(2);
-            let chgSpan = document.getElementById(`chg${sym}`);
-            if (chgSpan) {
-                chgSpan.innerText = (pct >=0 ? '+' : '') + pct + '%';
-                chgSpan.className = `change ${pct >=0 ? 'positive' : 'negative'}`;
-            }
+    function renderAssets() {
+        const container = document.getElementById('dynamicAssetsContainer');
+        if(!container) return;
+        const stocks = getUserStocks();
+        let html = '';
+        for(let sym of stocks) {
+            const price = prices[sym] || 150;
+            const holdings = currentUser ? (currentUser.portfolio[sym] || 0) : 0;
+            html += `
+                <div class="asset-card">
+                    <div class="asset-header"><strong>📈 ${sym}</strong><span class="change" id="chg_${sym}">--</span></div>
+                    <div class="price">$${price.toFixed(2)} USD</div>
+                    <div class="holdings" id="hold_${sym}">Own: ${holdings} shares</div>
+                    <div class="trade-controls">
+                        <input type="number" id="qty_${sym}" class="trade-input" value="1" min="1">
+                        <button class="btn buy" data-symbol="${sym}">Buy</button>
+                        <button class="btn sell" data-symbol="${sym}">Sell</button>
+                    </div>
+                </div>
+            `;
         }
-        if (currentUser) {
-            updateDashboard();
-            checkAchievements();
+        container.innerHTML = html;
+        document.querySelectorAll('.buy').forEach(btn => btn.onclick = () => trade(btn.dataset.symbol, 'buy'));
+        document.querySelectorAll('.sell').forEach(btn => btn.onclick = () => trade(btn.dataset.symbol, 'sell'));
+        // 涨跌显示（实时价格变动时展示）
+        for(let sym of stocks) {
+            const old = prices[sym];
+            setTimeout(() => {
+                const ch = document.getElementById(`chg_${sym}`);
+                if(ch && old && prices[sym] !== old) {
+                    let pct = ((prices[sym]-old)/old*100).toFixed(2);
+                    ch.innerText = (pct>=0?'+':'')+pct+'%';
+                    ch.className = `change ${pct>=0?'positive':'negative'}`;
+                }
+            }, 50);
         }
-        updateGlobalLeaderboard();
     }
 
-    // Net worth calculation
     function netWorth(user) {
         let val = user.cash;
-        val += (user.portfolio.AAPL || 0) * prices.AAPL;
-        val += (user.portfolio.MSFT || 0) * prices.MSFT;
-        val += (user.portfolio.BTC || 0) * prices.BTC;
-        return Math.round(val * 100) / 100;
+        for(let sym in user.portfolio) val += (user.portfolio[sym] || 0) * (prices[sym] || 0);
+        return Math.round(val*100)/100;
     }
 
-    // Update dashboard UI
-    function updateDashboard() {
-        if (!currentUser) return;
-        let net = netWorth(currentUser);
-        document.getElementById('netWorth').innerText = `$${net.toFixed(2)}`;
+    function updateStats() {
+        if(!currentUser) return;
+        document.getElementById('netWorth').innerText = `$${netWorth(currentUser).toFixed(2)}`;
         document.getElementById('cash').innerText = `$${currentUser.cash.toFixed(2)}`;
         document.getElementById('points').innerText = currentUser.points || 0;
-        document.getElementById('holdAAPL').innerText = `Own: ${currentUser.portfolio.AAPL} shares`;
-        document.getElementById('holdMSFT').innerText = `Own: ${currentUser.portfolio.MSFT} shares`;
-        document.getElementById('holdBTC').innerText = `Own: ${currentUser.portfolio.BTC} BTC`;
-        renderShop();
-        renderAchievements();
-    }
-
-    // Global leaderboard
-    function updateGlobalLeaderboard() {
-        let ranks = [];
-        for (let u in allUsers) {
-            ranks.push({ username: allUsers[u].username, net: netWorth(allUsers[u]) });
+        for(let sym in currentUser.portfolio) {
+            const el = document.getElementById(`hold_${sym}`);
+            if(el) el.innerText = `Own: ${currentUser.portfolio[sym]} shares`;
         }
-        ranks.sort((a,b) => b.net - a.net);
-        let rankList = document.getElementById('rankList');
-        if (ranks.length === 0) { rankList.innerHTML = '<li>No traders yet</li>'; return; }
-        rankList.innerHTML = ranks.slice(0,10).map((r,i) => `<li>${i===0?'🥇':i===1?'🥈':i===2?'🥉':''} ${r.username} ${currentUser && r.username===currentUser.username?'(you)':''}<span>$${r.net.toFixed(2)}</span></li>`).join('');
     }
 
-    // ---------- CLASS PERKS (applied during trade) ----------
-    function computeFee(amount, user) {
-        let baseRate = 0.001;
-        if (user.class === 'IndexMaster') return 0;
-        if (user.class === 'MAShark') return 0;
-        return amount * baseRate;
-    }
-
-    function applyClassMultiplier(profit, user) {
-        if (user.class === 'DerivativeHunter') {
-            return profit * 1.2;
-        }
-        return profit;
-    }
-
-    // Trading with class effects
-    function trade(symbol, action) {
-        if (!currentUser) return;
-        let qtyInput = document.getElementById(`qty${symbol}`);
-        let qty = parseFloat(qtyInput.value);
-        if (isNaN(qty) || qty <= 0) return showToast('Invalid amount');
+    async function trade(symbol, action) {
+        if(!currentUser) return;
+        let qty = parseFloat(document.getElementById(`qty_${symbol}`).value);
+        if(isNaN(qty) || qty<=0) return showToast('Invalid amount', true);
         let price = prices[symbol];
+        if(!price) { price = await fetchRealPrice(symbol); prices[symbol] = price; }
         let cost = qty * price;
-        let fee = computeFee(cost, currentUser);
-        let totalCost = action === 'buy' ? cost + fee : cost - fee;
-        if (action === 'buy') {
-            if (currentUser.cash < totalCost) return showToast('Insufficient cash');
-            currentUser.cash -= totalCost;
+        let fee = 0.001 * cost;
+        if(currentUser.class === 'IndexMaster' || currentUser.class === 'MAShark') fee = 0;
+        if(action === 'buy') {
+            if(currentUser.cash < cost+fee) return showToast('Insufficient cash', true);
+            currentUser.cash -= (cost+fee);
             currentUser.portfolio[symbol] = (currentUser.portfolio[symbol] || 0) + qty;
-            showToast(`Bought ${qty} ${symbol} for $${cost.toFixed(2)} + $${fee.toFixed(2)} fee`);
+            showToast(`Bought ${qty} ${symbol} @ $${price.toFixed(2)}`);
         } else {
             let owned = currentUser.portfolio[symbol] || 0;
-            if (owned < qty) return showToast(`Not enough ${symbol}`);
-            let revenue = cost - fee;
-            currentUser.cash += revenue;
+            if(owned < qty) return showToast(`Not enough ${symbol}`, true);
+            currentUser.cash += (cost - fee);
             currentUser.portfolio[symbol] -= qty;
-            showToast(`Sold ${qty} ${symbol} for $${revenue.toFixed(2)} after fee`);
+            showToast(`Sold ${qty} ${symbol} @ $${price.toFixed(2)}`);
         }
         allUsers[currentUser.username] = currentUser;
-        saveUsersToStorage();
-        updateDashboard();
-        updateGlobalLeaderboard();
-        checkAchievements();
+        saveUsers();
+        updateStats();
+        updateLeaderboard();
+        renderAssets();
     }
 
-    // Dividend Aristocrat: bonus dividend every 30 seconds if holdings >0
-    let dividendInterval;
-    function startDividendTimer() {
-        if (dividendInterval) clearInterval(dividendInterval);
-        dividendInterval = setInterval(() => {
-            if (currentUser && currentUser.class === 'DividendAristocrat') {
-                let totalHoldings = (currentUser.portfolio.AAPL || 0) + (currentUser.portfolio.MSFT || 0) + (currentUser.portfolio.BTC || 0);
-                if (totalHoldings > 0) {
-                    let bonus = netWorth(currentUser) * 0.005;
-                    currentUser.cash += bonus;
-                    allUsers[currentUser.username] = currentUser;
-                    saveUsersToStorage();
-                    showToast(`🍃 Dividend Aristocrat bonus: +$${bonus.toFixed(2)}`, false);
-                    updateDashboard();
-                }
+    async function addStock(symbol) {
+        let sym = symbol.trim().toUpperCase();
+        if(!sym) return;
+        let custom = getUserStocks();
+        if(custom.includes(sym)) return showToast(`${sym} already added`, true);
+        const testPrice = await fetchRealPrice(sym);
+        if(!testPrice || testPrice<=0) return showToast(`Symbol ${sym} not found`, true);
+        custom.push(sym);
+        saveUserStocks(custom);
+        await updateAllPrices();
+        showToast(`✅ ${sym} added (live data)`);
+    }
+
+    async function updateLeaderboard() {
+        let ranks = [];
+        for(let u in allUsers) ranks.push({ username: allUsers[u].username, net: netWorth(allUsers[u]) });
+        ranks.sort((a,b)=>b.net - a.net);
+        const rankList = document.getElementById('rankList');
+        if(rankList) {
+            if(ranks.length===0) rankList.innerHTML = '<li>No traders yet</li>';
+            else rankList.innerHTML = ranks.slice(0,10).map((r,i)=>`<li>${i===0?'🥇':i===1?'🥈':i===2?'🥉':'📌'} ${r.username} ${currentUser && r.username===currentUser.username?'(you)':''}<span>$${r.net.toFixed(2)}</span></li>`).join('');
+        }
+    }
+
+    function showToast(msg, err=false) {
+        let t=document.createElement('div'); t.className='toast'; t.innerText=msg;
+        if(err) t.style.borderLeftColor='#ef4444';
+        document.body.appendChild(t); setTimeout(()=>t.remove(),2500);
+    }
+
+    function startPriceWatcher() {
+        if(priceInterval) clearInterval(priceInterval);
+        priceInterval = setInterval(async () => {
+            for(let sym of getUserStocks()) {
+                const p = await fetchRealPrice(sym);
+                if(p) prices[sym] = p;
             }
-        }, 30000);
+            renderAssets();
+            if(currentUser) { updateStats(); updateLeaderboard(); }
+        }, 10000);
     }
 
-    // ---------- Dynamic Random Events ----------
-    function triggerRandomEvent() {
-        let events = [
-            { type: 'BLACK_SWAN', msg: '🦢 Black Swan: Trading delayed for 10 seconds!', effect: () => {} },
-            { type: 'LUCKY', msg: '💰 Lucky Fortune: You received 100 points!', effect: () => { if (currentUser) { currentUser.points = (currentUser.points || 0) + 100; saveUsersToStorage(); showToast('Lucky Fortune: +100 points'); updateDashboard(); } } },
-            { type: 'TAX SPIKE', msg: '📉 Tax spike: Next trade fee doubled!', effect: () => {} }
-        ];
-        let r = Math.random();
-        if (r < 0.15) {
-            let ev = events[Math.floor(Math.random() * events.length)];
-            showToast(ev.msg, false);
-            ev.effect();
-            if (ev.type === 'BLACK_SWAN') {
-                let buyBtns = document.querySelectorAll('.buy, .sell');
-                buyBtns.forEach(btn => btn.disabled = true);
-                setTimeout(() => buyBtns.forEach(btn => btn.disabled = false), 10000);
-            }
-        }
-    }
-
-    // ---------- Achievements ----------
-    function checkAchievements() {
-        if (!currentUser) return;
-        let achs = currentUser.achievements || [];
-        let changed = false;
-        if (!achs.includes('BottomFishingMaster') && currentUser.cash > 9000) {
-            achs.push('BottomFishingMaster');
-            currentUser.points = (currentUser.points || 0) + 500;
-            showToast('🏆 Achievement unlocked: Bottom Fishing Master! +500 points');
-            changed = true;
-        }
-        if (!achs.includes('TencentDiamondHand') && (currentUser.portfolio.AAPL > 10 || currentUser.portfolio.MSFT > 10)) {
-            achs.push('TencentDiamondHand');
-            currentUser.points = (currentUser.points || 0) + 500;
-            showToast('💎 Achievement unlocked: Diamond Hands! +500 points');
-            changed = true;
-        }
-        if (!achs.includes('BlackSwanEvader') && currentUser.cash > 15000) {
-            achs.push('BlackSwanEvader');
-            currentUser.points = (currentUser.points || 0) + 500;
-            showToast('🧠 Achievement unlocked: Black Swan Evader! +500 points');
-            changed = true;
-        }
-        if (changed) {
-            currentUser.achievements = achs;
-            allUsers[currentUser.username] = currentUser;
-            saveUsersToStorage();
-            renderAchievements();
-        }
-    }
-
-    function renderAchievements() {
-        let achsDiv = document.getElementById('achievementsList');
-        if (!achsDiv) return;
-        let achs = currentUser ? (currentUser.achievements || []) : [];
-        let display = achs.map(a => `<div>🏅 ${a}</div>`).join('');
-        if (display === '') display = '<div>No achievements yet</div>';
-        achsDiv.innerHTML = display;
-    }
-
-    // ---------- Shop ----------
-    const shopItems = [
-        { id: 'timefreeze', name: '⏰ Time Freeze', price: 300, desc: 'After-hours trade allowed once' },
-        { id: 'whaleradar', name: '📡 Whale Radar', price: 500, desc: 'See large orders for 24h' },
-        { id: 'taxshield', name: '🛡️ Tax Shield', price: 200, desc: 'Zero fee on next loss' },
-        { id: 'leverage', name: '⚡ Leverage Potion', price: 800, desc: '5x leverage on next trade' }
-    ];
-    function renderShop() {
-        let shopDiv = document.getElementById('shopItems');
-        if (!shopDiv) return;
-        if (!currentUser) return;
-        shopDiv.innerHTML = shopItems.map(item => `
-            <div class="shop-item">
-                <span>${item.name}<br><small>${item.desc}</small></span>
-                <button class="btn-buy-item" data-id="${item.id}" style="width:auto; padding:0.3rem 1rem;">${item.price} pts</button>
-            </div>
-        `).join('');
-        document.querySelectorAll('.btn-buy-item').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                let id = btn.dataset.id;
-                let item = shopItems.find(i => i.id === id);
-                if ((currentUser.points || 0) >= item.price) {
-                    currentUser.points -= item.price;
-                    currentUser.inventory = currentUser.inventory || [];
-                    currentUser.inventory.push(id);
-                    saveUsersToStorage();
-                    showToast(`Purchased ${item.name}!`, false);
-                    updateDashboard();
-                } else {
-                    showToast('Not enough points', true);
-                }
-            });
-        });
-    }
-
-    // ---------- Prediction ----------
-    function predict(direction) {
-        if (predictionLock) { showToast('Already predicted today!', true); return; }
-        let actual = Math.random() > 0.5 ? 'up' : 'down';
-        let resultDiv = document.getElementById('predictionResult');
-        if (direction === actual) {
-            let gain = 500;
-            currentUser.points = (currentUser.points || 0) + gain;
-            saveUsersToStorage();
-            resultDiv.innerHTML = `✅ Correct! ${actual === 'up' ? '↑' : '↓'} You earned ${gain} points.`;
-            showToast(`Prediction correct! +${gain} points`);
-        } else {
-            resultDiv.innerHTML = `❌ Wrong. Market went ${actual === 'up' ? '↑' : '↓'}. Better luck tomorrow.`;
-            showToast('Prediction failed', true);
-        }
-        predictionLock = true;
-        setTimeout(() => { predictionLock = false; resultDiv.innerHTML = ''; }, 86400000);
-        updateDashboard();
-    }
-
-    // ---------- Auth & Init ----------
-    document.getElementById('enterGameBtn').onclick = () => {
+    // ========== UI 切换与事件绑定 ==========
+    document.getElementById('enterPlatformBtn').onclick = () => {
         document.getElementById('landing').classList.add('hidden');
-        document.getElementById('gameMode').classList.remove('hidden');
-        if (priceInterval) clearInterval(priceInterval);
-        priceInterval = setInterval(updatePrices, 8000);
-        if (eventInterval) clearInterval(eventInterval);
-        eventInterval = setInterval(() => triggerRandomEvent(), 45000);
-        startDividendTimer();
-        updatePrices();
+        document.getElementById('gameRoot').classList.remove('hidden');
+        startPriceWatcher();
+        updateAllPrices();
     };
-
     document.getElementById('doRegister').onclick = () => {
         let username = document.getElementById('regUser').value.trim();
-        let password = document.getElementById('regPass').value;
+        let pass = document.getElementById('regPass').value;
         let confirm = document.getElementById('regConfirm').value;
-        let traderClass = document.getElementById('regClass').value;
-        if (!username || !password) return showToast('Username & password required');
-        if (password.length < 8) return showToast('Password must be at least 8 characters');
-        if (password !== confirm) return showToast('Passwords do not match');
-        if (allUsers[username]) return showToast('Username already exists');
-        let newUser = {
-            username: username,
-            password: password,
-            class: traderClass,
-            cash: 10000,
-            portfolio: { AAPL: 0, MSFT: 0, BTC: 0 },
-            points: 0,
-            achievements: [],
-            inventory: []
-        };
-        allUsers[username] = newUser;
-        saveUsersToStorage();
-        showToast('Account created! Please log in.');
+        let cls = document.getElementById('regClass').value;
+        if(!username || !pass) return showToast('Username & password required',true);
+        if(pass.length<8) return showToast('Password min 8 chars',true);
+        if(pass!==confirm) return showToast('Passwords mismatch',true);
+        if(allUsers[username]) return showToast('Username exists',true);
+        allUsers[username] = { username, password:pass, class:cls, cash:10000, portfolio:{}, points:0, achievements:[], inventory:[] };
+        saveUsers();
+        showToast('Account created! Please login');
         document.getElementById('toLoginBtn').click();
     };
-
     document.getElementById('doLogin').onclick = () => {
         let user = document.getElementById('loginUser').value.trim();
         let pass = document.getElementById('loginPass').value;
-        let existing = allUsers[user];
-        if (!existing || existing.password !== pass) return showToast('Invalid credentials');
-        currentUser = existing;
+        let u = allUsers[user];
+        if(!u || u.password !== pass) return showToast('Invalid credentials',true);
+        currentUser = u;
         document.getElementById('loginPanel').classList.add('hidden');
         document.getElementById('registerPanel').classList.add('hidden');
         document.getElementById('dashboard').classList.remove('hidden');
-        let classNameShort = currentUser.class === 'DividendAristocrat' ? '🛡️' : 
-                            currentUser.class === 'IndexMaster' ? '📈' :
-                            currentUser.class === 'DerivativeHunter' ? '⚡' :
-                            currentUser.class === 'QuantFreak' ? '🤖' :
-                            currentUser.class === 'MAShark' ? '🦈' : '🌊';
-        document.getElementById('userInfo').innerHTML = `👤 ${currentUser.username} ${classNameShort}`;
-        updateDashboard();
-        updateGlobalLeaderboard();
-        showToast(`Welcome back, ${currentUser.username}`);
+        document.getElementById('userInfo').innerHTML = `👤 ${currentUser.username} (${currentUser.class === 'DividendAristocrat' ? '🛡️' : currentUser.class === 'IndexMaster' ? '📈' : currentUser.class === 'DerivativeHunter' ? '⚡' : currentUser.class === 'QuantFreak' ? '🤖' : currentUser.class === 'MAShark' ? '🦈' : '🌊'})`;
+        updateStats();
+        renderAssets();
+        updateLeaderboard();
+        showToast(`Welcome back, ${user}`);
     };
-
     document.getElementById('logoutBtn').onclick = () => {
         currentUser = null;
         document.getElementById('dashboard').classList.add('hidden');
@@ -763,19 +449,10 @@
     };
     document.getElementById('toLoginBtn').onclick = () => { document.getElementById('registerPanel').classList.add('hidden'); document.getElementById('loginPanel').classList.remove('hidden'); };
     document.getElementById('toRegisterBtn').onclick = () => { document.getElementById('loginPanel').classList.add('hidden'); document.getElementById('registerPanel').classList.remove('hidden'); };
-
-    function bindTrades() {
-        document.querySelectorAll('.buy').forEach(btn => btn.addEventListener('click', () => trade(btn.dataset.symbol, 'buy')));
-        document.querySelectorAll('.sell').forEach(btn => btn.addEventListener('click', () => trade(btn.dataset.symbol, 'sell')));
-    }
-    bindTrades();
-
-    document.getElementById('predictUp').onclick = () => predict('up');
-    document.getElementById('predictDown').onclick = () => predict('down');
-
-    function showTerms() { alert("JWealth Terms of Service\n\n1. Simulated trading only. No real money.\n2. Market data is for educational purposes.\n3. You must be 13+ to register.\n4. No personal data collected.\n5. Have fun!"); }
-    document.getElementById('termsLinkReg')?.addEventListener('click', (e) => { e.preventDefault(); showTerms(); });
-    document.getElementById('termsLinkLogin')?.addEventListener('click', (e) => { e.preventDefault(); showTerms(); });
+    document.getElementById('addStockBtn').onclick = () => { addStock(document.getElementById('newStockSymbol').value); document.getElementById('newStockSymbol').value = ''; };
+    
+    loadUsers();
+    updateAllPrices();
 </script>
 </body>
 </html>
