@@ -25,138 +25,32 @@
             flex-wrap: wrap;
             border-bottom: 1px solid rgba(59,130,246,0.3);
         }
-        .logo-link {
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff, #60a5fa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .nav-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
+        .logo-link { text-decoration: none; cursor: pointer; }
+        .logo { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, #fff, #60a5fa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+        .nav-links a { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; cursor: pointer; }
         .nav-links a:hover { color: #60a5fa; }
-        .nav-login-btn {
-            background: #3b82f6;
-            border: none;
-            padding: 0.4rem 1.2rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+        .nav-login-btn { background: #3b82f6; border: none; padding: 0.4rem 1.2rem; border-radius: 2rem; font-weight: 600; font-size: 0.85rem; color: white; cursor: pointer; transition: all 0.2s; }
         .nav-login-btn:hover { background: #2563eb; transform: translateY(-1px); }
 
         /* ========== 全屏封面 ========== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #0a1a2f 0%, #0d2b4e 50%, #0a1a2f 100%);
-            position: relative;
-        }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, #0a1a2f 0%, #0d2b4e 50%, #0a1a2f 100%); position: relative; }
         .hero::before { display: none; }
-        .hero-content {
-            max-width: 900px;
-            padding: 2rem;
-            animation: slideUpFade 0.8s ease-out forwards;
-        }
-        @keyframes slideUpFade {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        .badge {
-            background: rgba(59,130,246,0.2);
-            backdrop-filter: blur(8px);
-            color: #60a5fa;
-            font-size: 0.8rem;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(59,130,246,0.4);
-        }
-        .hero h1 {
-            font-size: clamp(2.8rem, 8vw, 5rem);
-            background: linear-gradient(135deg, #fff, #94a3f8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
-        }
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
+        .hero-content { max-width: 900px; padding: 2rem; animation: slideUpFade 0.8s ease-out forwards; }
+        @keyframes slideUpFade { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+        .badge { background: rgba(59,130,246,0.2); backdrop-filter: blur(8px); color: #60a5fa; font-size: 0.8rem; padding: 0.3rem 1rem; border-radius: 40px; display: inline-block; margin-bottom: 1.5rem; border: 1px solid rgba(59,130,246,0.4); }
+        .hero h1 { font-size: clamp(2.8rem, 8vw, 5rem); background: linear-gradient(135deg, #fff, #94a3f8); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; color: #cbd5e1; margin-bottom: 2rem; }
+        .hero-stats { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
         .stat-value { font-size: 1.8rem; font-weight: 800; color: #4ade80; }
         .stat-label { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
         
         /* 按钮样式 */
-        .cta-button {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 48px;
-            font-weight: 600;
-            font-size: 1rem;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4);
-        }
-        .floating-btn, .explore-btn {
-            animation: floatUpDown 2s ease-in-out infinite;
-        }
-        @keyframes floatUpDown {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
-        }
-        .explore-btn {
-            background: transparent;
-            border: 2px solid rgba(59, 130, 246, 0.8);
-            color: #60a5fa;
-            padding: 0.8rem 2rem;
-            border-radius: 48px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
-        }
-        .explore-btn:hover {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: #3b82f6;
-            color: white;
-            transform: scale(1.02);
-        }
+        .cta-button { background: linear-gradient(135deg, #3b82f6, #2563eb); border: none; padding: 0.8rem 2rem; border-radius: 48px; font-weight: 600; font-size: 1rem; color: white; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 25px -5px rgba(59,130,246,0.4); }
+        .floating-btn, .explore-btn { animation: floatUpDown 2s ease-in-out infinite; }
+        @keyframes floatUpDown { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+        .explore-btn { background: transparent; border: 2px solid rgba(59, 130, 246, 0.8); color: #60a5fa; padding: 0.8rem 2rem; border-radius: 48px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(4px); }
+        .explore-btn:hover { background: rgba(59, 130, 246, 0.2); border-color: #3b82f6; color: white; transform: scale(1.02); }
         .cta-button:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(59,130,246,0.6); }
 
         /* 通用区块样式 */
@@ -166,18 +60,8 @@
         .container { max-width: 1200px; margin: 0 auto; }
 
         /* 职业卡片网格 */
-        .classes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        .class-card {
-            background: #1e293b;
-            border-radius: 1.5rem;
-            padding: 1.8rem;
-            border: 1px solid #334155;
-            transition: all 0.2s;
-        }
+        .classes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .class-card { background: #1e293b; border-radius: 1.5rem; padding: 1.8rem; border: 1px solid #334155; transition: all 0.2s; }
         .class-card:hover { border-color: #3b82f6; transform: translateY(-5px); }
         .class-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; padding: 0.2rem 0.6rem; border-radius: 2rem; display: inline-block; margin-bottom: 1rem; }
         .defensive { background: #1e3a5f; color: #60a5fa; }
@@ -189,18 +73,8 @@
         .class-negative { color: #f87171; font-size: 0.8rem; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid #334155; }
 
         /* 特性卡片 */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .feature-card {
-            background: #1e293b;
-            border-radius: 1.5rem;
-            padding: 1.8rem;
-            border: 1px solid #334155;
-            transition: all 0.2s;
-        }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .feature-card { background: #1e293b; border-radius: 1.5rem; padding: 1.8rem; border: 1px solid #334155; transition: all 0.2s; }
         .feature-card:hover { border-color: #3b82f6; transform: translateY(-4px); }
         .feature-icon { font-size: 2rem; margin-bottom: 0.8rem; }
         .feature-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
@@ -208,7 +82,7 @@
 
         footer { background: #030712; padding: 2rem; text-align: center; color: #64748b; font-size: 0.8rem; border-top: 1px solid #1e293b; }
 
-        /* ========== 登录卡片（居中） ========== */
+        /* ========== 登录卡片 ========== */
         .game-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at 30% 40%, #0f172a, #020617); }
         .game-container { max-width: 480px; width: 90%; margin: 2rem auto; }
         .form-card { background: #1e293b; border-radius: 2rem; padding: 2rem; border: 1px solid #334155; box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5); }
@@ -221,89 +95,35 @@
         .hidden { display: none; }
 
         /* ========== 全屏仪表盘 ========== */
-        .dashboard-container {
-            max-width: 100%;
-            margin: 0;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #0a1a2f 0%, #0d2b4e 100%);
-            min-height: 100vh;
-        }
-        .stats-row {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-        .stat-card {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(4px);
-            border-radius: 1rem;
-            padding: 0.8rem 1.5rem;
-            flex: 1;
-            min-width: 140px;
-            border: 1px solid rgba(59,130,246,0.3);
-        }
+        .dashboard-container { max-width: 100%; margin: 0; padding: 1.5rem; background: linear-gradient(135deg, #0a1a2f 0%, #0d2b4e 100%); min-height: 100vh; }
+        .stats-row { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .stat-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); border-radius: 1rem; padding: 0.8rem 1.5rem; flex: 1; min-width: 140px; border: 1px solid rgba(59,130,246,0.3); }
         .stat-card .label { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; }
         .stat-card .value { font-size: 1.4rem; font-weight: 700; color: #facc15; }
         
-        .add-stock-bar {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(4px);
-            border-radius: 1rem;
-            padding: 0.8rem 1rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-            border: 1px solid rgba(59,130,246,0.2);
-        }
+        .add-stock-bar { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); border-radius: 1rem; padding: 0.8rem 1rem; margin-bottom: 1.5rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; border: 1px solid rgba(59,130,246,0.2); }
         .add-stock-bar input { flex: 2; min-width: 150px; margin: 0; background: #0f172a; }
         .add-stock-bar button { width: auto; padding: 0.6rem 1.2rem; margin: 0; }
         
-        <!-- 每日任务卡片 -->
-<div class="daily-tasks-card">
-    <!-- 股市预测卡片 -->
-<div class="prediction-card">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-        <h3 style="font-size: 1rem;">🔮 Market Prediction</h3>
-        <span id="predictionLockStatus" style="font-size: 0.7rem; color: #f87171;">Available</span>
-    </div>
-    <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.8rem;">预测纳斯达克指数明日收盘涨跌</p>
-    <div style="display: flex; gap: 1rem;">
-        <button id="predictUpBtn" class="prediction-btn up-btn">📈 涨 (Up)</button>
-        <button id="predictDownBtn" class="prediction-btn down-btn">📉 跌 (Down)</button>
-    </div>
-    <div id="predictionResult" style="margin-top: 0.8rem; font-size: 0.75rem;"></div>
-</div>
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-        <h3 style="font-size: 1rem;">📋 Daily Tasks</h3>
-        <span id="taskRewardStatus" style="font-size: 0.7rem; color: #fbbf24;">+200 pts for all tasks</span>
-    </div>
-    <div id="dailyTasksList">
-        <div class="task-item"><input type="checkbox" id="task1"> <label for="task1">📈 完成一笔买入交易</label> <span class="task-reward">+50 pts</span></div>
-        <div class="task-item"><input type="checkbox" id="task2"> <label for="task2">📉 完成一笔卖出交易</label> <span class="task-reward">+50 pts</span></div>
-        <div class="task-item"><input type="checkbox" id="task3"> <label for="task3">🏆 净资产增长超过 5%</label> <span class="task-reward">+100 pts</span></div>
-        <div class="task-item"><input type="checkbox" id="task4"> <label for="task4">➕ 添加一只新股票</label> <span class="task-reward">+30 pts</span></div>
-        <div class="task-item"><input type="checkbox" id="task5"> <label for="task5">🔮 完成今日预测</label> <span class="task-reward">+80 pts</span></div>
-    </div>
-    <div id="taskProgress" style="margin-top: 0.8rem; font-size: 0.75rem; color: #94a3b8;">今日进度: 0/5</div>
-</div>
+        /* 每日任务卡片 */
+        .daily-tasks-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); border-radius: 1rem; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(59,130,246,0.2); }
+        .task-item { display: flex; align-items: center; gap: 0.8rem; padding: 0.5rem 0; border-bottom: 1px solid #1e293b; }
+        .task-item input { width: 18px; height: 18px; cursor: pointer; accent-color: #3b82f6; }
+        .task-item label { flex: 1; cursor: pointer; color: #cbd5e1; font-size: 0.85rem; }
+        .task-reward { color: #fbbf24; font-size: 0.75rem; }
+        .task-item input:checked + label { text-decoration: line-through; color: #64748b; }
         
-        .assets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .asset-card {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(4px);
-            border-radius: 1rem;
-            padding: 0.8rem 1rem;
-            border: 1px solid rgba(59,130,246,0.2);
-            transition: all 0.2s;
-        }
+        /* 预测卡片 */
+        .prediction-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); border-radius: 1rem; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(59,130,246,0.2); }
+        .prediction-btn { flex: 1; padding: 0.6rem; border-radius: 2rem; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; border: none; }
+        .up-btn { background: #22c55e; color: white; }
+        .up-btn:hover { background: #16a34a; transform: translateY(-1px); }
+        .down-btn { background: #ef4444; color: white; }
+        .down-btn:hover { background: #dc2626; transform: translateY(-1px); }
+        .prediction-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        
+        .assets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .asset-card { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); border-radius: 1rem; padding: 0.8rem 1rem; border: 1px solid rgba(59,130,246,0.2); transition: all 0.2s; }
         .asset-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
         .asset-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
         .price { font-size: 1.2rem; font-weight: 700; color: #facc15; }
@@ -317,89 +137,7 @@
         .buy { background: #22c55e; }
         .sell { background: #ef4444; }
         
-        .rank-section {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(4px);
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-top: 0.5rem;
-            border: 1px solid rgba(59,130,246,0.2);
-
-            /* 每日任务卡片 */
-.daily-tasks-card {
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(4px);
-    border-radius: 1rem;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(59,130,246,0.2);
-}
-.task-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #1e293b;
-}
-.task-item input {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    accent-color: #3b82f6;
-}
-.task-item label {
-    flex: 1;
-    cursor: pointer;
-    color: #cbd5e1;
-    font-size: 0.85rem;
-}
-.task-reward {
-    color: #fbbf24;
-    font-size: 0.75rem;
-}
-.task-item input:checked + label {
-    text-decoration: line-through;
-    color: #64748b;
-}
-.completed-task {
-    opacity: 0.6;
-}
-
-/* 预测卡片 */
-.prediction-card {
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(4px);
-    border-radius: 1rem;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(59,130,246,0.2);
-}
-.prediction-btn {
-    flex: 1;
-    padding: 0.6rem;
-    border-radius: 2rem;
-    font-weight: 600;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: none;
-}
-.up-btn {
-    background: #22c55e;
-    color: white;
-}
-.up-btn:hover { background: #16a34a; transform: translateY(-1px); }
-.down-btn {
-    background: #ef4444;
-    color: white;
-}
-.down-btn:hover { background: #dc2626; transform: translateY(-1px); }
-.prediction-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-}
-        }
+        .rank-section { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); border-radius: 1rem; padding: 1rem; margin-top: 0.5rem; border: 1px solid rgba(59,130,246,0.2); }
         .rank-section h3 { font-size: 1rem; margin-bottom: 0.8rem; }
         #rankList { list-style: none; max-height: 200px; overflow-y: auto; }
         #rankList li { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 0.4rem 0; border-bottom: 1px solid #1e293b; }
@@ -420,9 +158,7 @@
 
 <!-- 固定导航栏 -->
 <div class="navbar">
-    <a href="#" id="homeLink" class="logo-link">
-        <div class="logo">JWealth</div>
-    </a>
+    <a href="#" id="homeLink" class="logo-link"><div class="logo">JWealth</div></a>
     <div class="nav-links">
         <a id="navFeatures">Features</a>
         <a id="navClasses">Classes</a>
@@ -433,7 +169,6 @@
 
 <!-- LANDING PAGE -->
 <div id="landing">
-    <!-- 全屏封面 -->
     <div class="hero">
         <div class="hero-content">
             <span class="badge">🔷 JWealth · PROFESSIONAL TRADING SIMULATOR</span>
@@ -451,86 +186,39 @@
         </div>
     </div>
 
-    <!-- Features 区块 -->
     <div id="featuresSection" class="section">
         <div class="container">
             <h2 class="section-title">⚡ Why JWealth?</h2>
             <div class="features-grid">
-                <div class="feature-card"><div class="feature-icon">📈</div><h3>Real‑Time Prices</h3><p>Live data from Yahoo Finance — no delays, no simulations.</p></div>
-                <div class="feature-card"><div class="feature-icon">🎭</div><h3>6 Unique Classes</h3><p>Each with distinct perks, drawbacks, and playstyles.</p></div>
-                <div class="feature-card"><div class="feature-icon">🏆</div><h3>Global Leaderboard</h3><p>Compete against traders worldwide for the top spot.</p></div>
-                <div class="feature-card"><div class="feature-icon">🎲</div><h3>Dynamic Events</h3><p>Black Swan, Lucky Fortune, Tax Spike – random chaos.</p></div>
-                <div class="feature-card"><div class="feature-icon">🏅</div><h3>Achievements</h3><p>Unlock badges like "Bottom Fisher" & "Black Swan Evader".</p></div>
-                <div class="feature-card"><div class="feature-icon">🔄</div><h3>Season Reset</h3><p>Keep badges, restart wealth every 3 months.</p></div>
+                <div class="feature-card"><div class="feature-icon">📈</div><h3>Real‑Time Prices</h3><p>Live data from Yahoo Finance — no delays.</p></div>
+                <div class="feature-card"><div class="feature-icon">🎭</div><h3>6 Unique Classes</h3><p>Each with distinct perks and drawbacks.</p></div>
+                <div class="feature-card"><div class="feature-icon">🏆</div><h3>Global Leaderboard</h3><p>Compete worldwide.</p></div>
+                <div class="feature-card"><div class="feature-icon">🎲</div><h3>Dynamic Events</h3><p>Black Swan, Lucky Fortune.</p></div>
+                <div class="feature-card"><div class="feature-icon">🏅</div><h3>Achievements</h3><p>Unlock exclusive badges.</p></div>
+                <div class="feature-card"><div class="feature-icon">🔄</div><h3>Season Reset</h3><p>Keep badges, restart wealth.</p></div>
             </div>
         </div>
     </div>
 
-    <!-- 职业图谱区块（中英对照） -->
     <div id="classesSection" class="section" style="background: #0a1a2f;">
         <div class="container">
             <h2 class="section-title">🎭 Choose Your Class</h2>
             <p class="section-subtitle">进阶职业图谱 · Unique perks & playstyles</p>
             <div class="classes-grid">
-                <!-- 收息大班 / Dividend Aristocrat -->
-                <div class="class-card">
-                    <span class="class-type defensive">🛡️ 稳健型 · Defensive</span>
-                    <h3>收息大班 <span style="font-size:0.9rem; color:#94a3b8;">Dividend Aristocrat</span></h3>
-                    <div class="class-trait">✨ 天赋: Dividend Compounding</div>
-                    <p class="class-desc">+15% extra dividend yield for each holding day.</p>
-                    <div class="class-negative">⚠️ 负面: Fund settlement delay (simulated T+3)</div>
-                    <p class="class-desc" style="margin-top:0.5rem;">🎯 For long-term investors who dislike frequent trading.</p>
-                </div>
-                <!-- ETF领航员 / Index Master -->
-                <div class="class-card">
-                    <span class="class-type defensive">🛡️ 稳健型 · Defensive</span>
-                    <h3>ETF领航员 <span style="font-size:0.9rem; color:#94a3b8;">Index Master</span></h3>
-                    <div class="class-trait">✨ 天赋: Index Resonance</div>
-                    <p class="class-desc">Zero fees on index stocks. Double prediction rewards.</p>
-                    <p class="class-desc" style="margin-top:0.5rem;">🎯 For macro analysts who prefer steady growth.</p>
-                </div>
-                <!-- 衍生品猎人 / Derivative Hunter -->
-                <div class="class-card">
-                    <span class="class-type aggressive">⚔️ 进攻型 · Aggressive</span>
-                    <h3>衍生品猎人 <span style="font-size:0.9rem; color:#94a3b8;">Derivative Hunter</span></h3>
-                    <div class="class-trait">✨ 天赋: Leverage Master</div>
-                    <p class="class-desc">1.2x multiplier on warrants/CBBCs. Early quote peek.</p>
-                    <div class="class-negative">⚠️ 负面: Double point loss on losing trades.</div>
-                    <p class="class-desc" style="margin-top:0.5rem;">🎯 For high-risk traders seeking overnight fortunes.</p>
-                </div>
-                <!-- 量化极客 / Quant Freak -->
-                <div class="class-card">
-                    <span class="class-type aggressive">⚔️ 进攻型 · Aggressive</span>
-                    <h3>量化极客 <span style="font-size:0.9rem; color:#94a3b8;">Quant Freak</span></h3>
-                    <div class="class-trait">✨ 天赋: Microsecond Response</div>
-                    <p class="class-desc">Auto RSI overbought/oversold signals visualized.</p>
-                    <p class="class-desc" style="margin-top:0.5rem;">🎯 For technical analysts who rely on data & indicators.</p>
-                </div>
-                <!-- 企业猎手 / M&A Shark -->
-                <div class="class-card">
-                    <span class="class-type special">🔮 特殊型 · Special</span>
-                    <h3>企业猎手 <span style="font-size:0.9rem; color:#94a3b8;">M&A Shark</span></h3>
-                    <div class="class-trait">✨ 天赋: Restructuring Instinct</div>
-                    <p class="class-desc">Stamp duty waiver on restructuring stocks.</p>
-                    <div class="class-trait" style="color:#c084fc;">🏆 Unlocks exclusive badge: "Capital Crocodile"</div>
-                </div>
-                <!-- 南向弄潮儿 / Southbound Voyager -->
-                <div class="class-card">
-                    <span class="class-type special">🔮 特殊型 · Special</span>
-                    <h3>南向弄潮儿 <span style="font-size:0.9rem; color:#94a3b8;">Southbound Voyager</span></h3>
-                    <div class="class-trait">✨ 天赋: Northbound Resonance</div>
-                    <p class="class-desc">Live view of simulated top 5 northbound inflows.</p>
-                    <p class="class-desc" style="margin-top:0.5rem;">🎯 For trend followers who track big money flows.</p>
-                </div>
+                <div class="class-card"><span class="class-type defensive">🛡️ 稳健型 · Defensive</span><h3>收息大班 <span style="font-size:0.9rem; color:#94a3b8;">Dividend Aristocrat</span></h3><div class="class-trait">✨ 天赋: Dividend Compounding</div><p class="class-desc">+15% extra dividend yield for each holding day.</p><div class="class-negative">⚠️ 负面: Fund settlement delay (simulated T+3)</div><p class="class-desc">🎯 For long-term investors.</p></div>
+                <div class="class-card"><span class="class-type defensive">🛡️ 稳健型 · Defensive</span><h3>ETF领航员 <span style="font-size:0.9rem; color:#94a3b8;">Index Master</span></h3><div class="class-trait">✨ 天赋: Index Resonance</div><p class="class-desc">Zero fees on index stocks. Double prediction rewards.</p><p class="class-desc">🎯 For macro analysts.</p></div>
+                <div class="class-card"><span class="class-type aggressive">⚔️ 进攻型 · Aggressive</span><h3>衍生品猎人 <span style="font-size:0.9rem; color:#94a3b8;">Derivative Hunter</span></h3><div class="class-trait">✨ 天赋: Leverage Master</div><p class="class-desc">1.2x multiplier on warrants. Early quote peek.</p><div class="class-negative">⚠️ 负面: Double point loss on losing trades.</div><p class="class-desc">🎯 For high-risk traders.</p></div>
+                <div class="class-card"><span class="class-type aggressive">⚔️ 进攻型 · Aggressive</span><h3>量化极客 <span style="font-size:0.9rem; color:#94a3b8;">Quant Freak</span></h3><div class="class-trait">✨ 天赋: Microsecond Response</div><p class="class-desc">Auto RSI overbought/oversold signals.</p><p class="class-desc">🎯 For technical analysts.</p></div>
+                <div class="class-card"><span class="class-type special">🔮 特殊型 · Special</span><h3>企业猎手 <span style="font-size:0.9rem; color:#94a3b8;">M&A Shark</span></h3><div class="class-trait">✨ 天赋: Restructuring Instinct</div><p class="class-desc">Stamp duty waiver on restructuring stocks.</p><div class="class-trait" style="color:#c084fc;">🏆 Unlocks "Capital Crocodile" badge</div></div>
+                <div class="class-card"><span class="class-type special">🔮 特殊型 · Special</span><h3>南向弄潮儿 <span style="font-size:0.9rem; color:#94a3b8;">Southbound Voyager</span></h3><div class="class-trait">✨ 天赋: Northbound Resonance</div><p class="class-desc">Live view of top 5 northbound inflows.</p><p class="class-desc">🎯 For trend followers.</p></div>
             </div>
         </div>
     </div>
 
-    <!-- About 区块 -->
     <div id="aboutSection" class="section" style="background: #0f172a;">
         <div class="container" style="max-width: 800px; text-align: center;">
             <h2 class="section-title">About JWealth</h2>
-            <p style="color: #cbd5e1; line-height: 1.6;">JWealth is a next‑generation stock market simulator built for traders who want to learn without risk. We combine real‑time market data, RPG game mechanics, and social competition to create the most engaging trading experience. Whether you're a beginner or an experienced investor, JWealth gives you $10,000 virtual cash to master the markets.</p>
+            <p style="color: #cbd5e1; line-height: 1.6;">JWealth is a next‑generation stock market simulator built for traders who want to learn without risk. We combine real‑time market data, RPG game mechanics, and social competition to create the most engaging trading experience.</p>
             <p style="margin-top: 1.5rem; color: #60a5fa;">© 2026 · Built for the global trading community</p>
         </div>
     </div>
@@ -570,7 +258,6 @@
         </div>
     </div>
 
-    <!-- 全屏交易仪表盘 -->
     <div id="dashboard" class="dashboard-container hidden">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
             <div id="userInfo" style="background:rgba(15,23,42,0.7); padding:0.4rem 1rem; border-radius: 2rem;">👤</div>
@@ -583,15 +270,43 @@
             <div class="stat-card"><div class="label">🏅 Points</div><div class="value" id="points">0</div></div>
         </div>
 
+        <!-- 每日任务卡片 -->
+        <div class="daily-tasks-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                <h3 style="font-size: 1rem;">📋 Daily Tasks</h3>
+                <span style="font-size: 0.7rem; color: #fbbf24;">+200 pts for all tasks</span>
+            </div>
+            <div class="task-item"><input type="checkbox" id="task1"> <label for="task1">📈 Complete a buy trade</label> <span class="task-reward">+50 pts</span></div>
+            <div class="task-item"><input type="checkbox" id="task2"> <label for="task2">📉 Complete a sell trade</label> <span class="task-reward">+50 pts</span></div>
+            <div class="task-item"><input type="checkbox" id="task3"> <label for="task3">🏆 Net worth growth +5%</label> <span class="task-reward">+100 pts</span></div>
+            <div class="task-item"><input type="checkbox" id="task4"> <label for="task4">➕ Add a new stock</label> <span class="task-reward">+30 pts</span></div>
+            <div class="task-item"><input type="checkbox" id="task5"> <label for="task5">🔮 Complete today's prediction</label> <span class="task-reward">+80 pts</span></div>
+            <div id="taskProgress" style="margin-top: 0.8rem; font-size: 0.75rem; color: #94a3b8;">Today's progress: 0/5</div>
+        </div>
+
+        <!-- 股市预测卡片 -->
+        <div class="prediction-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                <h3 style="font-size: 1rem;">🔮 Market Prediction</h3>
+                <span id="predictionLockStatus" style="font-size: 0.7rem; color: #f87171;">Available</span>
+            </div>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.8rem;">Predict tomorrow's NASDAQ close</p>
+            <div style="display: flex; gap: 1rem;">
+                <button id="predictUpBtn" class="prediction-btn up-btn">📈 Up</button>
+                <button id="predictDownBtn" class="prediction-btn down-btn">📉 Down</button>
+            </div>
+            <div id="predictionResult" style="margin-top: 0.8rem; font-size: 0.75rem;"></div>
+        </div>
+
         <div class="add-stock-bar">
-            <input type="text" id="newStockSymbol" placeholder="Add stock (e.g., TSLA, NVDA, AMD, COIN)">
+            <input type="text" id="newStockSymbol" placeholder="Add stock (e.g., TSLA, NVDA, AMD)">
             <button id="addStockBtn" class="btn" style="width: auto; padding: 0.6rem 1.2rem;">+ Add</button>
         </div>
 
         <div id="dynamicAssetsContainer" class="assets-grid"></div>
 
         <div class="rank-section">
-            <h3>🏆 Global Leaderboard (Net Worth)</h3>
+            <h3>🏆 Global Leaderboard</h3>
             <ul id="rankList"><li>Login to see rankings</li></ul>
         </div>
     </div>
@@ -602,7 +317,6 @@
         document.getElementById('featuresSection').scrollIntoView({ behavior: 'smooth' });
     };
     
-    // 返回主页功能
     document.getElementById('homeLink').onclick = (e) => {
         e.preventDefault();
         if (!document.getElementById('landing').classList.contains('hidden')) {
@@ -617,7 +331,6 @@
     
     // ========== 真实价格获取 ==========
     let USE_MOCK = false;
-    
     async function fetchRealPrice(symbol) {
         if (USE_MOCK) return 100 + Math.random() * 400;
         try {
@@ -626,7 +339,6 @@
             if (data && typeof data.price === 'number') return data.price;
             throw new Error('Invalid response');
         } catch(e) {
-            console.warn(`使用模拟价格: ${symbol}`, e);
             return 100 + Math.random() * 400;
         }
     }
@@ -666,33 +378,11 @@
         for(let sym of stocks) {
             const price = prices[sym] || 150;
             const holdings = currentUser ? (currentUser.portfolio[sym] || 0) : 0;
-            html += `
-                <div class="asset-card">
-                    <div class="asset-header"><strong>📈 ${sym}</strong><span class="change" id="chg_${sym}">--</span></div>
-                    <div class="price">$${price.toFixed(2)} USD</div>
-                    <div class="holdings" id="hold_${sym}">Own: ${holdings} shares</div>
-                    <div class="trade-controls">
-                        <input type="number" id="qty_${sym}" class="trade-input" value="1" min="1">
-                        <button class="btn buy" data-symbol="${sym}">Buy</button>
-                        <button class="btn sell" data-symbol="${sym}">Sell</button>
-                    </div>
-                </div>
-            `;
+            html += `<div class="asset-card"><div class="asset-header"><strong>📈 ${sym}</strong><span class="change" id="chg_${sym}">--</span></div><div class="price">$${price.toFixed(2)} USD</div><div class="holdings" id="hold_${sym}">Own: ${holdings} shares</div><div class="trade-controls"><input type="number" id="qty_${sym}" class="trade-input" value="1" min="1"><button class="btn buy" data-symbol="${sym}">Buy</button><button class="btn sell" data-symbol="${sym}">Sell</button></div></div>`;
         }
         container.innerHTML = html;
         document.querySelectorAll('.buy').forEach(btn => btn.onclick = () => trade(btn.dataset.symbol, 'buy'));
         document.querySelectorAll('.sell').forEach(btn => btn.onclick = () => trade(btn.dataset.symbol, 'sell'));
-        for(let sym of stocks) {
-            const old = prices[sym];
-            setTimeout(() => {
-                const ch = document.getElementById(`chg_${sym}`);
-                if(ch && old && prices[sym] !== old) {
-                    let pct = ((prices[sym]-old)/old*100).toFixed(2);
-                    ch.innerText = (pct>=0?'+':'')+pct+'%';
-                    ch.className = `change ${pct>=0?'positive':'negative'}`;
-                }
-            }, 50);
-        }
     }
 
     function netWorth(user) {
@@ -710,6 +400,7 @@
             const el = document.getElementById(`hold_${sym}`);
             if(el) el.innerText = `Own: ${currentUser.portfolio[sym]} shares`;
         }
+        checkNetWorthGrowthTask();
     }
 
     async function trade(symbol, action) {
@@ -726,12 +417,14 @@
             currentUser.cash -= (cost+fee);
             currentUser.portfolio[symbol] = (currentUser.portfolio[symbol] || 0) + qty;
             showToast(`Bought ${qty} ${symbol} @ $${price.toFixed(2)}`);
+            triggerBuyTask();
         } else {
             let owned = currentUser.portfolio[symbol] || 0;
             if(owned < qty) return showToast(`Not enough ${symbol}`, true);
             currentUser.cash += (cost - fee);
             currentUser.portfolio[symbol] -= qty;
             showToast(`Sold ${qty} ${symbol} @ $${price.toFixed(2)}`);
+            triggerSellTask();
         }
         allUsers[currentUser.username] = currentUser;
         saveUsers();
@@ -751,6 +444,7 @@
         saveUserStocks(custom);
         await updateAllPrices();
         showToast(`✅ ${sym} added (live data)`);
+        triggerAddStockTask();
     }
 
     async function updateLeaderboard() {
@@ -782,7 +476,162 @@
         }, 10000);
     }
 
-    // ========== UI 切换与平滑滚动 ==========
+    // ========== 每日任务系统 ==========
+    function loadDailyTasks() {
+        if (!currentUser) return;
+        const today = new Date().toDateString();
+        const saved = localStorage.getItem(`JWealth_tasks_${currentUser.username}_${today}`);
+        if (saved) {
+            const tasks = JSON.parse(saved);
+            for (let i = 1; i <= 5; i++) {
+                const cb = document.getElementById(`task${i}`);
+                if (cb) cb.checked = tasks[i-1] || false;
+            }
+        } else {
+            for (let i = 1; i <= 5; i++) {
+                const cb = document.getElementById(`task${i}`);
+                if (cb) cb.checked = false;
+            }
+        }
+        updateTaskProgress();
+    }
+
+    function saveDailyTasks() {
+        if (!currentUser) return;
+        const today = new Date().toDateString();
+        const tasks = [];
+        for (let i = 1; i <= 5; i++) {
+            const cb = document.getElementById(`task${i}`);
+            tasks.push(cb ? cb.checked : false);
+        }
+        localStorage.setItem(`JWealth_tasks_${currentUser.username}_${today}`, JSON.stringify(tasks));
+        updateTaskProgress();
+    }
+
+    function updateTaskProgress() {
+        let completed = 0;
+        for (let i = 1; i <= 5; i++) {
+            const cb = document.getElementById(`task${i}`);
+            if (cb && cb.checked) completed++;
+        }
+        const progressDiv = document.getElementById('taskProgress');
+        if (progressDiv) progressDiv.innerText = `Today's progress: ${completed}/5`;
+        
+        const rewardKey = `JWealth_taskReward_${currentUser?.username}_${new Date().toDateString()}`;
+        if (completed === 5 && currentUser && !localStorage.getItem(rewardKey)) {
+            currentUser.points = (currentUser.points || 0) + 200;
+            saveUsers();
+            updateStats();
+            showToast('🎉 Completed all daily tasks! +200 points!');
+            localStorage.setItem(rewardKey, 'true');
+        }
+    }
+
+    function bindTaskEvents() {
+        for (let i = 1; i <= 5; i++) {
+            const cb = document.getElementById(`task${i}`);
+            if (cb) cb.onchange = () => { saveDailyTasks(); if (currentUser) updateStats(); };
+        }
+    }
+
+    function triggerBuyTask() { const cb = document.getElementById('task1'); if (cb && !cb.checked) { cb.checked = true; saveDailyTasks(); updateTaskProgress(); } }
+    function triggerSellTask() { const cb = document.getElementById('task2'); if (cb && !cb.checked) { cb.checked = true; saveDailyTasks(); updateTaskProgress(); } }
+    function triggerAddStockTask() { const cb = document.getElementById('task4'); if (cb && !cb.checked) { cb.checked = true; saveDailyTasks(); updateTaskProgress(); } }
+
+    let lastNetWorthForTask = null;
+    function checkNetWorthGrowthTask() {
+        if (!currentUser) return;
+        const currentNet = netWorth(currentUser);
+        if (lastNetWorthForTask && lastNetWorthForTask > 0) {
+            const growth = (currentNet - lastNetWorthForTask) / lastNetWorthForTask;
+            if (growth >= 0.05) {
+                const cb = document.getElementById('task3');
+                if (cb && !cb.checked) { cb.checked = true; saveDailyTasks(); updateTaskProgress(); }
+            }
+        }
+        lastNetWorthForTask = currentNet;
+    }
+
+    // ========== 股市预测系统 ==========
+    let predictionLock = false;
+    function checkAndResetPrediction() {
+        const lastPredictionDate = localStorage.getItem(`JWealth_prediction_${currentUser?.username}_date`);
+        const today = new Date().toDateString();
+        if (lastPredictionDate !== today) {
+            predictionLock = false;
+            localStorage.removeItem(`JWealth_prediction_${currentUser?.username}_result`);
+            const statusSpan = document.getElementById('predictionLockStatus');
+            if (statusSpan) statusSpan.innerText = 'Available';
+            const resultDiv = document.getElementById('predictionResult');
+            if (resultDiv) resultDiv.innerHTML = '';
+            const upBtn = document.getElementById('predictUpBtn');
+            const downBtn = document.getElementById('predictDownBtn');
+            if (upBtn) upBtn.disabled = false;
+            if (downBtn) downBtn.disabled = false;
+        } else {
+            const savedResult = localStorage.getItem(`JWealth_prediction_${currentUser?.username}_result`);
+            if (savedResult) {
+                const resultDiv = document.getElementById('predictionResult');
+                if (resultDiv) resultDiv.innerHTML = savedResult;
+                const statusSpan = document.getElementById('predictionLockStatus');
+                if (statusSpan) statusSpan.innerText = 'Done';
+                const upBtn = document.getElementById('predictUpBtn');
+                const downBtn = document.getElementById('predictDownBtn');
+                if (upBtn) upBtn.disabled = true;
+                if (downBtn) downBtn.disabled = true;
+                predictionLock = true;
+            }
+        }
+    }
+
+    function makePrediction(direction) {
+        if (!currentUser) { showToast('Please login first', true); return; }
+        if (predictionLock) { showToast('Already predicted today! Come back tomorrow', true); return; }
+        
+        const actual = Math.random() > 0.5 ? 'up' : 'down';
+        const isWin = (direction === actual);
+        
+        let resultHtml = '';
+        let pointsEarned = 0;
+        
+        if (isWin) {
+            pointsEarned = 100;
+            currentUser.points = (currentUser.points || 0) + pointsEarned;
+            saveUsers();
+            updateStats();
+            resultHtml = `<span style="color: #4ade80;">✅ Correct! Market went ${actual === 'up' ? 'up' : 'down'}. Earned ${pointsEarned} points!</span>`;
+            showToast(`Prediction correct! +${pointsEarned} points!`);
+        } else {
+            resultHtml = `<span style="color: #f87171;">❌ Wrong. Market went ${actual === 'up' ? 'up' : 'down'}. Better luck tomorrow!</span>`;
+            showToast('Prediction wrong!', true);
+        }
+        
+        const task5 = document.getElementById('task5');
+        if (task5 && !task5.checked) { task5.checked = true; saveDailyTasks(); updateTaskProgress(); }
+        
+        const resultDiv = document.getElementById('predictionResult');
+        if (resultDiv) resultDiv.innerHTML = resultHtml;
+        
+        predictionLock = true;
+        const statusSpan = document.getElementById('predictionLockStatus');
+        if (statusSpan) statusSpan.innerText = 'Done';
+        const upBtn = document.getElementById('predictUpBtn');
+        const downBtn = document.getElementById('predictDownBtn');
+        if (upBtn) upBtn.disabled = true;
+        if (downBtn) downBtn.disabled = true;
+        
+        localStorage.setItem(`JWealth_prediction_${currentUser.username}_date`, new Date().toDateString());
+        localStorage.setItem(`JWealth_prediction_${currentUser.username}_result`, resultHtml);
+    }
+
+    function bindPredictionEvents() {
+        const upBtn = document.getElementById('predictUpBtn');
+        const downBtn = document.getElementById('predictDownBtn');
+        if (upBtn) upBtn.onclick = () => makePrediction('up');
+        if (downBtn) downBtn.onclick = () => makePrediction('down');
+    }
+
+    // ========== UI 切换与事件绑定 ==========
     document.getElementById('enterPlatformBtn').onclick = () => {
         document.getElementById('landing').classList.add('hidden');
         document.getElementById('gameRoot').classList.remove('hidden');
@@ -819,10 +668,7 @@
         let u = allUsers[user];
         if(!u || u.password !== pass) return showToast('Invalid credentials',true);
         currentUser = u;
-        const classMap = {
-            'DividendAristocrat': '🛡️', 'IndexMaster': '📈', 'DerivativeHunter': '⚡',
-            'QuantFreak': '🤖', 'MAShark': '🦈', 'SouthboundVoyager': '🌊'
-        };
+        const classMap = { 'DividendAristocrat':'🛡️', 'IndexMaster':'📈', 'DerivativeHunter':'⚡', 'QuantFreak':'🤖', 'MAShark':'🦈', 'SouthboundVoyager':'🌊' };
         document.getElementById('loginPanel').classList.add('hidden');
         document.getElementById('registerPanel').classList.add('hidden');
         document.getElementById('dashboard').classList.remove('hidden');
@@ -830,6 +676,10 @@
         updateStats();
         renderAssets();
         updateLeaderboard();
+        loadDailyTasks();
+        bindTaskEvents();
+        checkAndResetPrediction();
+        bindPredictionEvents();
         showToast(`Welcome back, ${user}`);
     };
     document.getElementById('logoutBtn').onclick = () => {
